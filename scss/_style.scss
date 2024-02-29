@@ -9,6 +9,22 @@ body {
         flex-direction: column;
         align-items: center;
 
+        .message-box {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            li {
+                padding: 10px;
+                border-radius: 5px;
+                line-height: 20px;
+
+                &:nth-child(even) {
+                    background-color: rgb(60, 60, 60);
+                }
+            }
+        }
+
         .main-heading {
             align-self: flex-start;
             margin: 10px 0 10px 12px;
@@ -67,12 +83,45 @@ body {
                 cursor: pointer;
                 transition: all 0.2s;
 
+                .fa-spinner {
+                    animation-name: rotate;
+                    animation-duration: 1s;
+                    animation-iteration-count: infinite;
+
+                    @keyframes rotate {
+                        0% {
+                            transform: rotate(0deg);
+                        }
+
+                        100% {
+                            transform: rotate(360deg);
+                        }
+                    }
+                }
+
                 &--default {
                     border: 2px solid transparent;
                     max-width: 50px;
                     width: 100%;
                     height: 50px;
                     border-radius: 5px;
+                }
+
+                &:disabled {
+                    background-color: #461e7e;
+                    color: rgb(159, 159, 159);
+                    cursor: not-allowed;
+
+                    &:hover {
+                        background-color: #461e7e;
+                        color: rgb(159, 159, 159);
+                    }
+
+                    &:active {
+                        background-color: #461e7e;
+                        color: rgb(159, 159, 159);
+                        border: 2px solid transparent;
+                    }
                 }
 
                 &:hover {
