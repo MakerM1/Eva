@@ -1,0 +1,122 @@
+body {
+    background-color: $backgroundColor;
+    font-family: Arial, Helvetica, sans-serif;
+
+    .main-container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .main-heading {
+            align-self: flex-start;
+            margin: 10px 0 10px 12px;
+            font-size: 25px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .chatbox {
+            max-width: 99%;
+            width: 100%;
+            height: 83%;
+            border-radius: 5px;
+            overflow-y: scroll;
+            background-color: rgb(26, 26, 26);
+            color: white;
+            padding: 15px;
+        }
+
+        .inputs {
+            display: flex;
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            align-items: center;
+            width: 100%;
+            justify-content: space-around;
+            gap: 5px;
+            padding: 0 5px;
+
+            &__text-input {
+                max-width: 92%;
+                width: 100%;
+                background-color: rgb(26, 26, 26);
+                color: white;
+                padding: 15px;
+                border-radius: 5px;
+                outline: none;
+                min-height: 50px;
+                border: 2px solid transparent;
+                transition: all 0.2s;
+
+                &:focus {
+                    border: 2px solid white;
+                }
+            }
+
+            &__send {
+                background-color: $focusColor;
+                color: white;
+                font-size: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.2s;
+
+                &--default {
+                    border: 2px solid transparent;
+                    max-width: 50px;
+                    width: 100%;
+                    height: 50px;
+                    border-radius: 5px;
+                }
+
+                &:hover {
+                    background-color: $focusColorHover;
+                }
+
+                &:active {
+                    border: 2px solid white;
+                    background-color: $focusColorActive;
+                }
+            }
+
+            &__stop {
+                background-color: #FF0000;
+                color: white;
+                transition: all 0.2s;
+                cursor: pointer;
+
+                &:disabled {
+                    background-color: #721010;
+                    color: rgb(159, 159, 159);
+                    cursor: not-allowed;
+
+                    &:hover {
+                        background-color: #721010;
+                        color: rgb(159, 159, 159);
+                    }
+
+                    &:active {
+                        background-color: #721010;
+                        color: rgb(159, 159, 159);
+                        border: 2px solid transparent;
+                    }
+                }
+
+                &:hover {
+                    background-color: #c80000;
+                }
+
+                &:active {
+                    background-color: #ff2626;
+                    border: 2px solid white;
+                }
+            }
+        }
+    }
+}
