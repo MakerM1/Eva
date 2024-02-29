@@ -142,7 +142,8 @@ body .main-container .inputs {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   gap: 5px;
-  padding: 0 5px;
+  padding: 5px;
+  background-color: rgb(57, 57, 57);
 }
 body .main-container .inputs__text-input {
   max-width: 92%;
