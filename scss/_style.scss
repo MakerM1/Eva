@@ -25,18 +25,30 @@ body {
             }
         }
 
-        .main-heading {
+        .heading-cont {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             align-self: flex-start;
             margin: 10px 0 10px 12px;
-            font-size: 25px;
-            font-weight: 600;
-            color: white;
+            gap: 5px;
+
+            img {
+                max-width: 40px;
+                width: 100%;
+            }
+
+            .main-heading {
+                font-size: 25px;
+                font-weight: 600;
+                color: white;
+            }
         }
 
         .chatbox {
             max-width: 99%;
             width: 100%;
-            height: 83%;
+            height: 81.5%;
             border-radius: 5px;
             overflow-y: scroll;
             background-color: rgb(26, 26, 26);

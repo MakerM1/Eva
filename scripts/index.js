@@ -1,4 +1,4 @@
-const API_KEY = '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';
+const API_KEY = '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';
 const API_URL = 'https://api.openai.com/v1/chat/completions';
 
 const promptInput = document.getElementById('promptInput');
@@ -34,7 +34,8 @@ const generate = async () => {
 
         const data = await response.json()
         resultText.innerHTML += `<li class="ai-message">
-        ${data.choices[0].message.content}<li>`; 
+        ${data.choices[0].message.content}</li>`; 
+        console.log(data);
     } catch (error) {
         resultText.innerText = 'Error occured while generating.'
         console.error('Error: ', error);
@@ -48,13 +49,16 @@ const generate = async () => {
 }
 
 generateBtn.addEventListener('click', () => {
-    resultText.innerHTML += `<li>${promptInput.value}</li>`
-    console.log(`<li>${promptInput.value}</li>`);
+    if (promptInput.value !== "") {
+        resultText.innerHTML += `<li>${promptInput.value}</li>`
+    }
     generate()
 });
 promptInput.addEventListener("keyup", (event) => {
     if (event.key === "Enter") {
-        resultText.innerHTML += `<li>${promptInput.value}</li>`
+        if (promptInput.value !== "") {
+            resultText.innerHTML += `<li>${promptInput.value}</li>`
+        }
         generate();
     }
 })

@@ -91,10 +91,26 @@ body .main-container .message-box li {
 body .main-container .message-box li:nth-child(even) {
   background-color: rgb(60, 60, 60);
 }
-body .main-container .main-heading {
+body .main-container .heading-cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-item-align: start;
       align-self: flex-start;
   margin: 10px 0 10px 12px;
+  gap: 5px;
+}
+body .main-container .heading-cont img {
+  max-width: 40px;
+  width: 100%;
+}
+body .main-container .heading-cont .main-heading {
   font-size: 25px;
   font-weight: 600;
   color: white;
@@ -102,7 +118,7 @@ body .main-container .main-heading {
 body .main-container .chatbox {
   max-width: 99%;
   width: 100%;
-  height: 83%;
+  height: 81.5%;
   border-radius: 5px;
   overflow-y: scroll;
   background-color: rgb(26, 26, 26);
