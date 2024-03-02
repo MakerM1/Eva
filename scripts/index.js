@@ -43,7 +43,7 @@ const generate = async () => {
         // let translated = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ka&dt=t&q=${data.choices[0].message.content}`
         resultText.innerHTML += `<li>
         <div class="user-name-pfp">
-          <img src="../images/eva-logo.png" alt="AI pfp" />
+          <img src="images/eva-logo.png" alt="AI pfp" />
           <p>Eva</p>
         </div>
         <p class="text">
@@ -68,7 +68,7 @@ generateBtn.addEventListener('click', () => {
     if (promptInput.value !== "") {
         resultText.innerHTML += `<li>
         <div class="user-name-pfp">
-          <img src="../images/user-pfp.jpg" alt="User pfp" />
+          <img src="images/user-pfp.jpg" alt="User pfp" />
           <p>User</p>
         </div>
         <p class="text">
@@ -83,7 +83,7 @@ promptInput.addEventListener("keyup", (event) => {
         if (promptInput.value !== "") {
             resultText.innerHTML += `<li>
             <div class="user-name-pfp">
-              <img src="../images/user-pfp.jpg" alt="User pfp" />
+              <img src="images/user-pfp.jpg" alt="User pfp" />
               <p>User</p>
             </div>
             <p class="text">

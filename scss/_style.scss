@@ -14,20 +14,6 @@ body {
             flex-direction: column;
             gap: 10px;
 
-            &::-webkit-scrollbar {
-                width: 5px;
-            }
-
-            &::-webkit-scrollbar-thumb {
-                background-color: rgb(14, 14, 14);
-                border-radius: 50px;
-                cursor: pointer;
-
-                &:hover {
-                    background-color: rgb(60, 60, 60);
-                }
-            }
-
             li {
                 padding: 10px;
                 border-radius: 5px;
@@ -90,6 +76,20 @@ body {
             background-color: rgb(26, 26, 26);
             color: white;
             padding: 15px;
+
+
+            &::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: rgb(14, 14, 14);
+                border-radius: 50px;
+
+                &:hover {
+                    background-color: rgb(21, 21, 21);
+                }
+            }
         }
 
         .inputs {
