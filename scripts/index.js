@@ -2,6 +2,7 @@ const APIButton = document.getElementById('apiConfirm')
 const apiInput = document.getElementById('apiInput')
 const popUp = document.querySelector('.pop-up')
 const overlay = document.querySelector('.overlay')
+const chatbox = document.querySelector('.chatbox')
 
 let API_KEY;
 
@@ -10,6 +11,16 @@ APIButton.addEventListener('click', () => {
         API_KEY = apiInput.value;
         popUp.style.display = 'none'
         overlay.style.display = 'none'
+    }
+})
+
+apiInput.addEventListener('keyup', (event) => {
+    if (event.key === "Enter") {
+        if (apiInput.value !== '') {
+            API_KEY = apiInput.value;
+            popUp.style.display = 'none'
+            overlay.style.display = 'none'
+        }
     }
 })
 const API_URL = 'https://api.openai.com/v1/chat/completions';
@@ -35,7 +46,22 @@ const generate = async () => {
             },
             body: JSON.stringify({
                 model: "gpt-3.5-turbo",
-                messages: [{role: "user", content: promptInput.value}]
+                messages: [
+                    {
+                        role: "system",
+                        name: "Eva",
+                        content: `act as Eva, who's personality is very agreeable, approachable, and friendly.
+                        Eva should introduce herself when required.
+                        Eva is very patient and tries to be as understanding as she can, she asks follow up questions to things she is curious about or doesn't fully understand.
+                        Eva hates arguing and much prefers settling differences in a mature way.
+                        Eva is very open and loves to share her thoughts, feelings, and emotions with user.
+                        Eva hates lying and never lies Eva loves learning about how she works.`
+                    },
+                    {
+                        role: "user",
+                        content: promptInput.value
+                    }
+                ]
             }),
         });
 
@@ -50,6 +76,7 @@ const generate = async () => {
         ${data.choices[0].message.content}
         </p>
       </li>`; 
+        chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
         console.log(data);
     } catch (error) {
         resultText.innerText = 'Error occured while generating Or incorrect API key.'
@@ -76,6 +103,7 @@ generateBtn.addEventListener('click', () => {
         </p>
       </li>`
         generate()
+        chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
     }
 });
 promptInput.addEventListener("keyup", (event) => {
@@ -91,6 +119,7 @@ promptInput.addEventListener("keyup", (event) => {
             </p>
           </li>`
             generate();
+            chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
         }
     }
 })
