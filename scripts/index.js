@@ -41,11 +41,18 @@ const generate = async () => {
 
         const data = await response.json()
         // let translated = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ka&dt=t&q=${data.choices[0].message.content}`
-        resultText.innerHTML += `<li class="ai-message">
-        ${data.choices[0].message.content}</li>`; 
+        resultText.innerHTML += `<li>
+        <div class="user-name-pfp">
+          <img src="../images/eva-logo.png" alt="AI pfp" />
+          <p>Eva</p>
+        </div>
+        <p class="text">
+        ${data.choices[0].message.content}
+        </p>
+      </li>`; 
         console.log(data);
     } catch (error) {
-        resultText.innerText = 'Error occured while generating.'
+        resultText.innerText = 'Error occured while generating Or incorrect API key.'
         console.error('Error: ', error);
     } finally {
         generateBtn.disabled = false;
@@ -59,14 +66,30 @@ const generate = async () => {
 
 generateBtn.addEventListener('click', () => {
     if (promptInput.value !== "") {
-        resultText.innerHTML += `<li>${promptInput.value}</li>`
+        resultText.innerHTML += `<li>
+        <div class="user-name-pfp">
+          <img src="../images/user-pfp.jpg" alt="User pfp" />
+          <p>User</p>
+        </div>
+        <p class="text">
+        ${promptInput.value}
+        </p>
+      </li>`
         generate()
     }
 });
 promptInput.addEventListener("keyup", (event) => {
     if (event.key === "Enter") {
         if (promptInput.value !== "") {
-            resultText.innerHTML += `<li>${promptInput.value}</li>`
+            resultText.innerHTML += `<li>
+            <div class="user-name-pfp">
+              <img src="../images/user-pfp.jpg" alt="User pfp" />
+              <p>User</p>
+            </div>
+            <p class="text">
+            ${promptInput.value}
+            </p>
+          </li>`
             generate();
         }
     }
