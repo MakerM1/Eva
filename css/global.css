@@ -83,6 +83,17 @@ body .main-container .message-box {
           flex-direction: column;
   gap: 10px;
 }
+body .main-container .message-box::-webkit-scrollbar {
+  width: 5px;
+}
+body .main-container .message-box::-webkit-scrollbar-thumb {
+  background-color: rgb(14, 14, 14);
+  border-radius: 50px;
+  cursor: pointer;
+}
+body .main-container .message-box::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(60, 60, 60);
+}
 body .main-container .message-box li {
   padding: 10px;
   border-radius: 5px;
@@ -261,4 +272,95 @@ body .main-container .inputs__stop:hover {
 body .main-container .inputs__stop:active {
   background-color: #ff2626;
   border: 2px solid white;
+}
+body .pop-up {
+  max-width: 500px;
+  width: 100%;
+  height: 500px;
+  background-color: rgb(54, 54, 54);
+  border-radius: 20px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 1000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 50px;
+  padding: 10px;
+}
+body .pop-up__text {
+  font-size: 20px;
+  color: white;
+  font-weight: 600;
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+  line-height: 25px;
+}
+body .pop-up .api-inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+body .pop-up .api-inputs__input {
+  background-color: rgb(26, 26, 26);
+  outline: none;
+  padding: 10px 15px;
+  border-radius: 50px;
+  color: white;
+  max-width: 222px;
+  width: 100%;
+  border: 2px solid rgb(26, 26, 26);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+body .pop-up .api-inputs__input:focus {
+  border: 2px solid white;
+}
+body .pop-up .api-inputs__confirm {
+  background-color: #7639cb;
+  color: white;
+  padding: 10px 15px;
+  font-weight: 600;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+body .pop-up .api-inputs__confirm:hover {
+  background-color: #8d44f3;
+}
+body .pop-up .api-inputs__confirm:active {
+  border: 2px solid white;
+  background-color: #692fba;
+}
+body .overlay {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.403);
+  z-index: 99;
 }/*# sourceMappingURL=global.css.map */

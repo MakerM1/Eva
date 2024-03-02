@@ -1,4 +1,17 @@
-const API_KEY = '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';
+const APIButton = document.getElementById('apiConfirm')
+const apiInput = document.getElementById('apiInput')
+const popUp = document.querySelector('.pop-up')
+const overlay = document.querySelector('.overlay')
+
+let API_KEY;
+
+APIButton.addEventListener('click', () => {
+    if (apiInput.value !== '') {
+        API_KEY = apiInput.value;
+        popUp.style.display = 'none'
+        overlay.style.display = 'none'
+    }
+})
 const API_URL = 'https://api.openai.com/v1/chat/completions';
 
 const promptInput = document.getElementById('promptInput');
@@ -7,12 +20,6 @@ const stopBtn = document.getElementById('stopBtn');
 const resultText = document.getElementById('resultText');
 
 const generate = async () => {
-
-    if (!promptInput.value) {
-        alert("Please enter a prompt.");
-        return;
-    }
-
     generateBtn.disabled = true;
 
     if (generateBtn.disabled === true) {
@@ -33,6 +40,7 @@ const generate = async () => {
         });
 
         const data = await response.json()
+        // let translated = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ka&dt=t&q=${data.choices[0].message.content}`
         resultText.innerHTML += `<li class="ai-message">
         ${data.choices[0].message.content}</li>`; 
         console.log(data);
@@ -44,6 +52,7 @@ const generate = async () => {
 
         if (generateBtn.disabled === false) {
             generateBtn.innerHTML = `<i class="fa-solid fa-location-arrow"></i>`
+            promptInput.value = ''
         }
     }
 }
@@ -51,14 +60,14 @@ const generate = async () => {
 generateBtn.addEventListener('click', () => {
     if (promptInput.value !== "") {
         resultText.innerHTML += `<li>${promptInput.value}</li>`
+        generate()
     }
-    generate()
 });
 promptInput.addEventListener("keyup", (event) => {
     if (event.key === "Enter") {
         if (promptInput.value !== "") {
             resultText.innerHTML += `<li>${promptInput.value}</li>`
+            generate();
         }
-        generate();
     }
 })
