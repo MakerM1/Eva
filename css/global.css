@@ -58,6 +58,7 @@ a {
 body {
   background-color: rgb(57, 57, 57);
   font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
 }
 body .main-container {
   width: 100%;
