@@ -23,12 +23,30 @@ apiInput.addEventListener('keyup', (event) => {
         }
     }
 })
+
 const API_URL = 'https://api.openai.com/v1/chat/completions';
 
 const promptInput = document.getElementById('promptInput');
 const generateBtn = document.getElementById('generateBtn');
 const stopBtn = document.getElementById('stopBtn');
 const resultText = document.getElementById('resultText');
+
+    let convos = [{
+        role: "system",
+        name: "Eva",
+        content: `act as Eva, who's personality is very agreeable, approachable, and friendly.
+        Eva Must act as human as possible.
+        Eva must be as approachable and friendly as possuble.
+        Eva should introduce herself when required.
+        Eva is very patient and tries to be as understanding as she can, she asks follow up questions to things she is curious about or doesn't fully understand.
+        Eva hates arguing and much prefers settling differences in a mature way.
+        Eva is very open and loves to share her thoughts, feelings, and emotions with user.
+        Eva hates lying and never lies Eva loves learning about how she works.`
+    },
+    {
+        role: "user",
+        content: promptInput.value
+    }]
 
 const generate = async () => {
     generateBtn.disabled = true;
@@ -46,22 +64,7 @@ const generate = async () => {
             },
             body: JSON.stringify({
                 model: "gpt-3.5-turbo",
-                messages: [
-                    {
-                        role: "system",
-                        name: "Eva",
-                        content: `act as Eva, who's personality is very agreeable, approachable, and friendly.
-                        Eva should introduce herself when required.
-                        Eva is very patient and tries to be as understanding as she can, she asks follow up questions to things she is curious about or doesn't fully understand.
-                        Eva hates arguing and much prefers settling differences in a mature way.
-                        Eva is very open and loves to share her thoughts, feelings, and emotions with user.
-                        Eva hates lying and never lies Eva loves learning about how she works.`
-                    },
-                    {
-                        role: "user",
-                        content: promptInput.value
-                    }
-                ]
+                messages: convos
             }),
         });
 
@@ -76,10 +79,27 @@ const generate = async () => {
         ${data.choices[0].message.content}
         </p>
       </li>`; 
+      let AiReply = {
+        role: 'assistant',
+        name: "eva",
+        content: data.choices[0].message.content
+      };
+
+        convos.push(AiReply)
         chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
         console.log(data);
     } catch (error) {
-        resultText.innerText = 'Error occured while generating Or incorrect API key.'
+        resultText.innerHTML = `<p class="error">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span>404:</span> Error occured while generating or incorrect API
+        key.
+      </p>`
+      let errorText = {
+        role: 'system',
+        name: 'eva',
+        content: 'if you recieve this it means an error occured during chatting, apologize to the user due to the error.'
+    }
+    convos.push(errorText)
         console.error('Error: ', error);
     } finally {
         generateBtn.disabled = false;
@@ -102,7 +122,12 @@ generateBtn.addEventListener('click', () => {
         ${promptInput.value}
         </p>
       </li>`
-        generate()
+      let userReply = {
+        role: "user",
+        content: promptInput.value
+    }
+    convos.push(userReply)
+        generate();
         chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
     }
 });
@@ -118,6 +143,11 @@ promptInput.addEventListener("keyup", (event) => {
             ${promptInput.value}
             </p>
           </li>`
+          let userReply = {
+            role: "user",
+            content: promptInput.value
+        }
+        convos.push(userReply)
             generate();
             chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
         }

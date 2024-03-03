@@ -110,8 +110,36 @@ body .main-container .message-box li .user-name-pfp p {
 body .main-container .message-box li .text {
   margin-left: 32.5px;
 }
-body .main-container .message-box li:nth-child(even) {
+body .main-container .message-box li:nth-of-type(even) {
   background-color: rgb(60, 60, 60);
+}
+body .main-container .message-box .error {
+  padding: 10px;
+  border-radius: 5px;
+  line-height: 20px;
+  font-weight: 600;
+  -webkit-box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.75);
+  background-color: rgba(128, 128, 128, 0.337);
+  position: relative;
+  overflow: hidden;
+}
+body .main-container .message-box .error::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  height: 100%;
+  width: 3px;
+  background-color: rgb(255, 96, 96);
+  left: 0;
+  top: 0;
+}
+body .main-container .message-box .error i {
+  color: rgb(255, 96, 96);
+  margin-right: 2px;
+}
+body .main-container .message-box .error span {
+  color: rgb(255, 96, 96);
 }
 body .main-container .heading-cont {
   display: -webkit-box;
@@ -146,6 +174,12 @@ body .main-container .chatbox {
   background-color: rgb(26, 26, 26);
   color: white;
   padding: 15px;
+}
+body .main-container .chatbox__heading {
+  font-size: 20px;
+  color: white;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 body .main-container .chatbox::-webkit-scrollbar {
   width: 8px;
@@ -384,4 +418,15 @@ body .overlay {
   left: 0;
   background-color: rgba(0, 0, 0, 0.403);
   z-index: 99;
+}
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: white !important;
+  background: #7639cb !important;
+}
+
+::selection {
+  color: white !important;
+  background: #7639cb !important;
 }/*# sourceMappingURL=global.css.map */

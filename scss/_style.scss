@@ -41,8 +41,39 @@ body {
                     margin-left: 32.5px;
                 }
 
-                &:nth-child(even) {
+                &:nth-of-type(even) {
                     background-color: rgb(60, 60, 60);
+                }
+            }
+
+            .error {
+                padding: 10px;
+                border-radius: 5px;
+                line-height: 20px;
+                font-weight: 600;
+                box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.75);
+                background-color: rgba(128, 128, 128, 0.337);
+                position: relative;
+                overflow: hidden;
+
+                &::before {
+                    content: '';
+                    display: inline-block;
+                    position: absolute;
+                    height: 100%;
+                    width: 3px;
+                    background-color: rgb(255, 96, 96);
+                    left: 0;
+                    top: 0;
+                }
+
+                i {
+                    color: rgb(255, 96, 96);
+                    margin-right: 2px;
+                }
+
+                span {
+                    color: rgb(255, 96, 96);
                 }
             }
         }
@@ -76,6 +107,13 @@ body {
             background-color: rgb(26, 26, 26);
             color: white;
             padding: 15px;
+
+            &__heading {
+                font-size: 20px;
+                color: white;
+                font-weight: 700;
+                margin-bottom: 20px;
+            }
 
 
             &::-webkit-scrollbar {
@@ -299,4 +337,15 @@ body {
         background-color: rgba(0, 0, 0, 0.403);
         z-index: 99;
     }
+}
+
+::-moz-selection {
+    /* Code for Firefox */
+    color: white !important;
+    background: $focusColor !important;
+}
+
+::selection {
+    color: white !important;
+    background: $focusColor !important;
 }
