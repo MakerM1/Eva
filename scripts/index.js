@@ -144,7 +144,7 @@ const generate = async () => {
                 resultText.innerHTML += `<li>
                 <div class="user-name-pfp">
                   <img src="images/eva-logo.png" alt="AI pfp" />
-                  <p>Eva</p>
+                  <p class="ai-name">Eva</p>
                 </div>
                 <p class="text">
                     ${translatedText}
@@ -164,7 +164,7 @@ const generate = async () => {
             resultText.innerHTML += `<li>
             <div class="user-name-pfp">
               <img src="images/eva-logo.png" alt="AI pfp" />
-              <p>Eva</p>
+              <p class="ai-name">Eva</p>
             </div>
             <p class="text">
             ${data.choices[0].message.content}
@@ -218,7 +218,7 @@ generateBtn.addEventListener('click', async () => {
         resultText.innerHTML += `<li>
         <div class="user-name-pfp">
           <img src="images/user-pfp.jpg" alt="User pfp" />
-          <p>User</p>
+          <p class="user-name">User</p>
         </div>
         <p class="text">
         ${promptInput.value}
@@ -256,7 +256,7 @@ promptInput.addEventListener("keyup", async (event) => {
             resultText.innerHTML += `<li>
             <div class="user-name-pfp">
               <img src="images/user-pfp.jpg" alt="User pfp" />
-              <p>User</p>
+              <p class="user-name">User</p>
             </div>
             <p class="text">
             ${promptInput.value}
@@ -279,5 +279,30 @@ promptInput.addEventListener("keyup", async (event) => {
             generate();
             chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
         }
+    }
+})
+
+
+
+// change ui depending on language
+
+const heading = document.querySelector('.main-heading')
+const chatHeading = document.querySelector('.chatbox__heading')
+const userName = document.querySelector('.user-name')
+const aiName = document.querySelector('.ai-name')
+
+langSwitch.addEventListener('click', () => {
+    if (isGeorgian) {
+        heading.innerHTML = 'ევა.AI'
+        chatHeading.innerHTML = 'ჩატი'
+        promptInput.placeholder = 'მესიჯი...'
+        userName.innerHTML = 'მომხმარებელი'
+        aiName.innerHTML = 'ევა'
+    } else {
+        heading.innerHTML = 'Eva.AI'
+        chatHeading.innerHTML = 'Chat'
+        promptInput.placeholder = 'Enter prompt...'
+        userName.innerHTML = 'User'
+        aiName.innerHTML = 'Eva'
     }
 })
