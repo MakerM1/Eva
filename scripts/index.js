@@ -1,3 +1,7 @@
+const translatorApi = 'AIzaSyBKfNO5K-eDmiszeP4pwHaNhdVOOzy3NNc';
+const tartgetLanguage = 'ka';
+let isGeorgian = false;
+
 const APIButton = document.getElementById('apiConfirm')
 const apiInput = document.getElementById('apiInput')
 const popUp = document.querySelector('.pop-up')
@@ -69,16 +73,55 @@ const generate = async () => {
         });
 
         const data = await response.json()
-        // let translated = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ka&dt=t&q=${data.choices[0].message.content}`
-        resultText.innerHTML += `<li>
-        <div class="user-name-pfp">
-          <img src="images/eva-logo.png" alt="AI pfp" />
-          <p>Eva</p>
-        </div>
-        <p class="text">
-        ${data.choices[0].message.content}
-        </p>
-      </li>`; 
+        const translate = async () => {
+            const text = data.choices[0].message.content;
+            const url = `https://translation.googleapis.com/language/translate/v2?key=${translatorApi}`
+
+            const dataTranslate =  {
+                q: text,
+                target: tartgetLanguage
+            };
+
+            const response = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(dataTranslate),
+                headers: {'Content-Type': "application/json"}
+            });
+
+            if (response.ok) {
+                const translationData = await response.json();
+                let translatedText = translationData.data.translations[0].translatedText;
+
+                resultText.innerHTML += `<li>
+                <div class="user-name-pfp">
+                  <img src="images/eva-logo.png" alt="AI pfp" />
+                  <p>Eva</p>
+                </div>
+                <p class="text">
+                ${data.choices[0].message.content}
+                <br />
+                Georgian: ${translatedText}
+                </p>
+              </li>`; 
+            } else {
+                console.log(translatedText);
+                console.error('error:', response.statusText)
+            }
+        }
+
+        if (isGeorgian) {
+            translate()
+        } else {
+            resultText.innerHTML += `<li>
+            <div class="user-name-pfp">
+              <img src="images/eva-logo.png" alt="AI pfp" />
+              <p>Eva</p>
+            </div>
+            <p class="text">
+            ${data.choices[0].message.content}
+            </p>
+          </li>`; 
+        }
       let AiReply = {
         role: 'assistant',
         name: "eva",

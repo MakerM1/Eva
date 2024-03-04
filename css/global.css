@@ -181,6 +181,9 @@ body .main-container .chatbox__heading {
   color: white;
   font-weight: 700;
   margin-bottom: 20px;
+  border-bottom: 1px solid rgb(165, 165, 165);
+  padding: 0 0 10px 0;
+  background-color: rgb(26, 26, 26);
 }
 body .main-container .chatbox::-webkit-scrollbar {
   width: 8px;
