@@ -80,22 +80,132 @@ body {
         }
 
         .heading-cont {
+            width: 100%;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             align-self: flex-start;
-            margin: 10px 0 10px 12px;
-            gap: 5px;
+            padding: 10px 15px 10px 12px;
+            gap: 10px;
 
-            img {
-                max-width: 40px;
+            &__left {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                max-width: 122px;
                 width: 100%;
+
+                img {
+                    max-width: 40px;
+                    width: 100%;
+                }
+
+                .main-heading {
+                    font-size: 25px;
+                    font-weight: 600;
+                    color: white;
+                }
             }
 
-            .main-heading {
-                font-size: 25px;
-                font-weight: 600;
-                color: white;
+            &__right {
+                display: flex;
+                gap: 15px;
+                justify-content: center;
+                align-items: center;
+                max-width: 200px;
+                width: 100%;
+
+                .lang-eng {
+                    display: flex;
+                    align-items: center;
+                    gap: 2px;
+                    flex-wrap: wrap;
+                    justify-content: center;
+
+                    img {
+                        max-width: 25px;
+                        width: 100%;
+                        border-radius: 2px;
+                    }
+
+                    p {
+                        color: white;
+                        transition: all 0.2s;
+
+                        &.active {
+                            font-weight: 600;
+                        }
+                    }
+                }
+
+                .lang-switch {
+                    display: inline-block;
+                    width: 40px;
+                    height: 20px;
+                    position: relative;
+                    cursor: pointer;
+
+                    &__switch {
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+
+                    &__visual {
+                        width: 40px;
+                        height: 20px;
+                        background-color: $focusColor;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        border-radius: 20px;
+                        transition: all 0.3s;
+
+                        &::before {
+                            content: '';
+                            display: inline-block;
+                            width: 17px;
+                            height: 17px;
+                            background-color: rgb(26, 26, 26);
+                            border-radius: 50%;
+                            position: absolute;
+                            left: 1px;
+                            top: 2px;
+                            transition: all 0.3s;
+                        }
+                    }
+
+                    &__switch:checked+.lang-switch__visual {
+                        background-color: white;
+
+                        &::before {
+                            left: 21px;
+                            background-color: red;
+                        }
+                    }
+                }
+
+                .lang-geo {
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                    flex-wrap: wrap;
+                    justify-content: center;
+
+                    img {
+                        max-width: 25px;
+                        width: 100%;
+                        border-radius: 2px;
+                    }
+
+                    p {
+                        color: white;
+                        transition: all 0.2s;
+
+                        &.active {
+                            font-weight: 600;
+                        }
+                    }
+                }
             }
         }
 

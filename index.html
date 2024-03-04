@@ -37,8 +37,29 @@
 
     <div class="main-container">
       <div class="heading-cont">
-        <img src="images/eva-logo.png" alt="logo" />
-        <h1 class="main-heading">Eva.AI</h1>
+        <div class="heading-cont__left">
+          <img src="images/eva-logo.png" alt="logo" />
+          <h1 class="main-heading">Eva.AI</h1>
+        </div>
+
+        <div class="heading-cont__right">
+          <div class="lang-eng">
+            <img src="images/Flag_of_the_United_Kingdom.svg.webp" alt="uk" />
+            <p id="langEngText" class="active">Eng</p>
+          </div>
+          <label class="lang-switch" for="langSwitch">
+            <input
+              type="checkbox"
+              id="langSwitch"
+              class="lang-switch__switch"
+            />
+            <div class="lang-switch__visual"></div>
+          </label>
+          <div class="lang-geo">
+            <img src="images/Flag_of_Georgia.svg.png" alt="geo" />
+            <p id="langGeoText">ქართ</p>
+          </div>
+        </div>
       </div>
 
       <div id="resultContainer" class="chatbox">

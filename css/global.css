@@ -143,28 +143,150 @@ body .main-container .message-box .error span {
   color: rgb(255, 96, 96);
 }
 body .main-container .heading-cont {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -ms-flex-item-align: start;
       align-self: flex-start;
-  margin: 10px 0 10px 12px;
-  gap: 5px;
+  padding: 10px 15px 10px 12px;
+  gap: 10px;
 }
-body .main-container .heading-cont img {
+body .main-container .heading-cont__left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
+  max-width: 122px;
+  width: 100%;
+}
+body .main-container .heading-cont__left img {
   max-width: 40px;
   width: 100%;
 }
-body .main-container .heading-cont .main-heading {
+body .main-container .heading-cont__left .main-heading {
   font-size: 25px;
   font-weight: 600;
   color: white;
+}
+body .main-container .heading-cont__right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 15px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 200px;
+  width: 100%;
+}
+body .main-container .heading-cont__right .lang-eng {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+body .main-container .heading-cont__right .lang-eng img {
+  max-width: 25px;
+  width: 100%;
+  border-radius: 2px;
+}
+body .main-container .heading-cont__right .lang-eng p {
+  color: white;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+body .main-container .heading-cont__right .lang-eng p.active {
+  font-weight: 600;
+}
+body .main-container .heading-cont__right .lang-switch {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  position: relative;
+  cursor: pointer;
+}
+body .main-container .heading-cont__right .lang-switch__switch {
+  opacity: 0;
+  visibility: hidden;
+}
+body .main-container .heading-cont__right .lang-switch__visual {
+  width: 40px;
+  height: 20px;
+  background-color: #7639cb;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 20px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+body .main-container .heading-cont__right .lang-switch__visual::before {
+  content: "";
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  background-color: rgb(26, 26, 26);
+  border-radius: 50%;
+  position: absolute;
+  left: 1px;
+  top: 2px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+body .main-container .heading-cont__right .lang-switch__switch:checked + .lang-switch__visual {
+  background-color: white;
+}
+body .main-container .heading-cont__right .lang-switch__switch:checked + .lang-switch__visual::before {
+  left: 21px;
+  background-color: red;
+}
+body .main-container .heading-cont__right .lang-geo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 4px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+body .main-container .heading-cont__right .lang-geo img {
+  max-width: 25px;
+  width: 100%;
+  border-radius: 2px;
+}
+body .main-container .heading-cont__right .lang-geo p {
+  color: white;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+body .main-container .heading-cont__right .lang-geo p.active {
+  font-weight: 600;
 }
 body .main-container .chatbox {
   max-width: 99%;

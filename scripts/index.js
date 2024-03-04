@@ -1,6 +1,25 @@
 const translatorApi = 'AIzaSyBKfNO5K-eDmiszeP4pwHaNhdVOOzy3NNc';
 const tartgetLanguage = 'ka';
+const tartgetLanguageEng = 'en'
+
+const eng = document.getElementById('langEngText');
+const geo = document.getElementById('langEngText');
+
 let isGeorgian = false;
+
+const langSwitch = document.getElementById('langSwitch');
+
+langSwitch.addEventListener('click', () => {
+    if (langSwitch.checked) {
+        isGeorgian = true;
+    } else {
+        isGeorgian = false;
+    }
+
+    eng.classList.toggle('active')
+    geo.classList.toggle('active')
+    console.log(isGeorgian);
+})
 
 const APIButton = document.getElementById('apiConfirm')
 const apiInput = document.getElementById('apiInput')
@@ -34,6 +53,36 @@ const promptInput = document.getElementById('promptInput');
 const generateBtn = document.getElementById('generateBtn');
 const stopBtn = document.getElementById('stopBtn');
 const resultText = document.getElementById('resultText');
+
+let inputText = "";
+let targetLanguage = "en";
+let translatedText = "";
+
+const translateInput = async () => {
+    inputText = promptInput.value;
+    const url = `https://translation.googleapis.com/language/translate/v2?key=${translatorApi}`;
+  
+    const dataTranslateEng = {
+      q: inputText,
+      target: targetLanguage
+    };
+  
+    const response2 = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(dataTranslateEng),
+      headers: {'Content-Type': "application/json"}
+    });
+  
+    if (response2.ok) {
+      const translationData = await response2.json();
+      translatedText = translationData.data.translations[0].translatedText;
+      return translatedText;
+    } else {
+      console.error('error:', response2.statusText);
+      return "";
+    }
+  };
+  
 
     let convos = [{
         role: "system",
@@ -98,11 +147,10 @@ const generate = async () => {
                   <p>Eva</p>
                 </div>
                 <p class="text">
-                ${data.choices[0].message.content}
-                <br />
-                Georgian: ${translatedText}
+                    ${translatedText}
                 </p>
-              </li>`; 
+              </li>`;
+              console.log(translatedText); 
             } else {
                 console.log(translatedText);
                 console.error('error:', response.statusText)
@@ -122,6 +170,7 @@ const generate = async () => {
             </p>
           </li>`; 
         }
+
       let AiReply = {
         role: 'assistant',
         name: "eva",
@@ -154,8 +203,17 @@ const generate = async () => {
     }
 }
 
-generateBtn.addEventListener('click', () => {
+
+
+generateBtn.addEventListener('click', async () => {
     if (promptInput.value !== "") {
+        const translatedString = await translateInput();
+
+        if (translatedString) {
+          console.log("Translated text:", translatedString);
+        } else {
+          console.error("Translation failed.");
+        }
         resultText.innerHTML += `<li>
         <div class="user-name-pfp">
           <img src="images/user-pfp.jpg" alt="User pfp" />
@@ -165,17 +223,33 @@ generateBtn.addEventListener('click', () => {
         ${promptInput.value}
         </p>
       </li>`
-      let userReply = {
-        role: "user",
-        content: promptInput.value
+      if (isGeorgian) {
+        let userReply = {
+            role: "user",
+            content: translatedString
+        }
+        convos.push(userReply)
+    } else {
+        let userReply = {
+            role: "user",
+            content: promptInput.value
+        }
+        convos.push(userReply)
     }
-    convos.push(userReply)
+    
         generate();
         chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
     }
 });
-promptInput.addEventListener("keyup", (event) => {
+promptInput.addEventListener("keyup", async (event) => {
     if (event.key === "Enter") {
+        const translatedString = await translateInput();
+
+        if (translatedString) {
+          console.log("Translated text:", translatedString);
+        } else {
+          console.error("Translation failed.");
+        }
         if (promptInput.value !== "") {
             resultText.innerHTML += `<li>
             <div class="user-name-pfp">
@@ -185,12 +259,21 @@ promptInput.addEventListener("keyup", (event) => {
             <p class="text">
             ${promptInput.value}
             </p>
-          </li>`
-          let userReply = {
-            role: "user",
-            content: promptInput.value
+          </li>`;
+        if (isGeorgian) {
+            let userReply = {
+                role: "user",
+                content: translatedString
+            }
+            convos.push(userReply)
+        } else {
+            let userReply = {
+                role: "user",
+                content: promptInput.value
+            }
+            convos.push(userReply)
         }
-        convos.push(userReply)
+        
             generate();
             chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
         }
