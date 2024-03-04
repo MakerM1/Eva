@@ -151,6 +151,7 @@ const generate = async () => {
                 </p>
               </li>`;
               console.log(translatedText); 
+              chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
             } else {
                 console.log(translatedText);
                 console.error('error:', response.statusText)
@@ -241,6 +242,7 @@ generateBtn.addEventListener('click', async () => {
         chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
     }
 });
+
 promptInput.addEventListener("keyup", async (event) => {
     if (event.key === "Enter") {
         const translatedString = await translateInput();
