@@ -337,6 +337,37 @@ body .main-container .inputs {
   padding: 5px;
   background-color: rgb(57, 57, 57);
 }
+body .main-container .inputs__listening {
+  width: 91.4%;
+  height: 30px;
+  left: 0.45%;
+  top: 10px;
+  background-color: rgb(21, 21, 21);
+  position: absolute;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 15px;
+  padding: 10px;
+  z-index: -1;
+  border-radius: 5px 5px 0 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+body .main-container .inputs__listening.active {
+  top: -25px;
+  -webkit-box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.75);
+}
+body .main-container .inputs__listening.active + .inputs__text-input {
+  border-radius: 0 0 5px 5px;
+}
 body .main-container .inputs__text-input {
   max-width: 92%;
   width: 100%;
@@ -427,7 +458,7 @@ body .main-container .inputs__send:active {
   background-color: #692fba;
 }
 body .main-container .inputs__stop {
-  background-color: #FF0000;
+  background-color: #3a0ea9;
   color: white;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
@@ -448,10 +479,10 @@ body .main-container .inputs__stop:disabled:active {
   border: 2px solid transparent;
 }
 body .main-container .inputs__stop:hover {
-  background-color: #c80000;
+  background-color: #320d90;
 }
 body .main-container .inputs__stop:active {
-  background-color: #ff2626;
+  background-color: #2a0d73;
   border: 2px solid white;
 }
 body .pop-up {

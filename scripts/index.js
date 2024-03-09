@@ -288,3 +288,64 @@ langSwitch.addEventListener('click', () => {
         aiName.innerHTML = 'Eva'
     }
 })
+
+const startButton = document.getElementById("stopBtn");
+const outputText = document.getElementById("output");
+const listening = document.getElementById('listening')
+
+// Check if the Speech Recognition API is supported in the browser
+if (
+  "SpeechRecognition" in window ||
+  "webkitSpeechRecognition" in window
+) {
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+
+  // Configure recognition settings
+  recognition.continuous = true;
+  recognition.interimResults = true;
+
+  // Handle recognition results
+  recognition.onresult = (event) => {
+    const result = event.results[event.results.length - 1];
+    console.log(result);
+    const transcript = result[0].transcript;
+    promptInput.value = transcript;
+    console.log(transcript);
+  };
+
+  // Handle recognition errors
+  recognition.onerror = (event) => {
+    console.error("Speech recognition error:", event.error);
+  };
+
+  // Start recognition when the button is clicked
+  startButton.addEventListener("mousedown", () => {
+    recognition.start();
+    listening.classList.add('active')
+  });
+
+  startButton.addEventListener("touchstart", () => {
+    recognition.start();
+    listening.classList.add('active')
+  });
+
+  startButton.addEventListener("mouseup", () => {
+    recognition.stop();
+    listening.classList.remove('active')
+  });
+
+  startButton.addEventListener("touchend", () => {
+    recognition.stop();
+    listening.classList.remove('active')
+  });
+
+  // Re-enable the button when recognition ends
+  recognition.onend = () => {
+    sendMessage()
+  };
+} else {
+  outputText.textContent =
+    "Speech recognition not supported in this browser.";
+}

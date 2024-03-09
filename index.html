@@ -70,6 +70,10 @@
       </div>
 
       <div class="inputs">
+        <div class="inputs__listening" id="listening">
+          <i class="fa-solid fa-microphone"></i>
+          <p id="nowListeningText">Now Listening...</p>
+        </div>
         <input
           type="text"
           id="promptInput"
@@ -83,11 +87,9 @@
         <button
           id="stopBtn"
           class="inputs__stop inputs__send--default"
-          disabled
           title="Work In Progress!"
-          onclick="alert('Work in Progress!')"
         >
-          <i class="fa-solid fa-stop"></i>
+          <i class="fa-solid fa-microphone"></i>
         </button>
       </div>
     </div>
