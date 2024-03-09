@@ -182,7 +182,37 @@ const generate = async () => {
             <p class="text">
             ${data.choices[0].message.content}
             </p>
+            <i class="fa-solid fa-volume-high readMessage"></i>
           </li>`; 
+
+          function speak(content) {
+            // Create a SpeechSynthesisUtterance
+            const utterance = new SpeechSynthesisUtterance(content);
+          
+            // Select a voice
+            const voices = speechSynthesis.getVoices().filter(function(voice) {
+              console.log(voice.name);
+              return voice.name == "Microsoft Zira - English (United States)"
+            });
+            utterance.voice = voices[0]; // Choose a specific voice
+          
+            // Speak the text
+            speechSynthesis.speak(utterance);
+          }
+          
+          
+
+          let readMessage = document.querySelectorAll('.fa-volume-high')
+          let messageContent = document.querySelectorAll('.text')
+
+          if (readMessage !== undefined && readMessage !== null) {
+            readMessage.forEach((read) => {
+              read.addEventListener('click', () => {
+                console.log('speak');
+                speak(data.choices[0].message.content)
+            })
+            })
+          }
         }
 
       let AiReply = {

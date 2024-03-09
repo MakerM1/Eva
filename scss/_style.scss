@@ -16,9 +16,10 @@ body {
             gap: 10px;
 
             li {
-                padding: 10px;
+                padding: 10px 26px 10px 10px;
                 border-radius: 5px;
                 line-height: 20px;
+                position: relative;
 
                 .user-name-pfp {
                     display: flex;
@@ -40,6 +41,25 @@ body {
 
                 .text {
                     margin-left: 32.5px;
+                }
+
+                .fa-volume-high {
+                    position: absolute;
+                    right: 5px;
+                    top: 10px;
+                    font-size: 13px;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                    padding: 7px 5px;
+                    border-radius: 50%;
+
+                    &:hover {
+                        background-color: rgba(0, 0, 0, 0.253);
+                    }
+
+                    &:active {
+                        background-color: rgba(0, 0, 0, 0.366);
+                    }
                 }
 
                 &:nth-of-type(even) {

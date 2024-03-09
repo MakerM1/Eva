@@ -85,9 +85,10 @@ body .main-container .message-box {
   gap: 10px;
 }
 body .main-container .message-box li {
-  padding: 10px;
+  padding: 10px 26px 10px 10px;
   border-radius: 5px;
   line-height: 20px;
+  position: relative;
 }
 body .main-container .message-box li .user-name-pfp {
   display: -webkit-box;
@@ -110,6 +111,23 @@ body .main-container .message-box li .user-name-pfp p {
 }
 body .main-container .message-box li .text {
   margin-left: 32.5px;
+}
+body .main-container .message-box li .fa-volume-high {
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  padding: 7px 5px;
+  border-radius: 50%;
+}
+body .main-container .message-box li .fa-volume-high:hover {
+  background-color: rgba(0, 0, 0, 0.253);
+}
+body .main-container .message-box li .fa-volume-high:active {
+  background-color: rgba(0, 0, 0, 0.366);
 }
 body .main-container .message-box li:nth-of-type(even) {
   background-color: rgb(60, 60, 60);
