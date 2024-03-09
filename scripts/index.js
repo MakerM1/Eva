@@ -349,3 +349,5 @@ if (
   outputText.textContent =
     "Speech recognition not supported in this browser.";
 }
+
+listening.style.width = promptInput.clientWidth + 3 + 'px'
