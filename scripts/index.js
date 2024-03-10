@@ -107,7 +107,8 @@ const translateInput = async () => {
         include some storytelling 
         Write in UK English 
         use no more than 10% passive voice 
-        use trasition words in sentences`
+        use trasition words in sentences
+        If you are writing a piece of code you MUST surround them in </code> <code> and REMOVE the backtick from it and after every ; you MUST add <br /> tag`
     },
     {
         role: "user",
@@ -191,7 +192,6 @@ const generate = async () => {
           
             // Select a voice
             const voices = speechSynthesis.getVoices().filter(function(voice) {
-              console.log(voice.name);
               return voice.name == "Microsoft Zira - English (United States)"
             });
             utterance.voice = voices[0]; // Choose a specific voice
@@ -206,9 +206,8 @@ const generate = async () => {
           let messageContent = document.querySelectorAll('.text')
 
           if (readMessage !== undefined && readMessage !== null) {
-            readMessage.forEach((read) => {
+            readMessage.forEach((read, i) => {
               read.addEventListener('click', () => {
-                console.log('speak');
                 speak(data.choices[0].message.content)
             })
             })
