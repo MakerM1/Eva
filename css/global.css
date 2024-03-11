@@ -391,10 +391,12 @@ body .main-container .inputs__listening {
   border-radius: 5px 5px 0 0;
   -webkit-box-shadow: none;
           box-shadow: none;
+  opacity: 0;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 body .main-container .inputs__listening.active {
+  opacity: 1;
   top: -25px;
   -webkit-box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.75);
           box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.75);
