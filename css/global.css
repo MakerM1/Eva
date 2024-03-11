@@ -85,10 +85,16 @@ body .main-container .message-box {
   gap: 10px;
 }
 body .main-container .message-box li {
-  padding: 10px 26px 10px 10px;
+  padding: 10px 26px 10px 20px;
   border-radius: 5px;
   line-height: 20px;
   position: relative;
+}
+body .main-container .message-box li .gnr-img {
+  margin-top: 10px;
+  max-width: 500px;
+  width: 100%;
+  border-radius: 10px;
 }
 body .main-container .message-box li code {
   color: white;
@@ -109,7 +115,8 @@ body .main-container .message-box li .user-name-pfp {
       -ms-flex-align: center;
           align-items: center;
   gap: 7px;
-  margin-bottom: 7px;
+  margin-left: -15px;
+  margin-bottom: 9px;
 }
 body .main-container .message-box li .user-name-pfp img {
   max-width: 25px;
@@ -119,9 +126,6 @@ body .main-container .message-box li .user-name-pfp img {
 body .main-container .message-box li .user-name-pfp p {
   font-size: 16px;
   font-weight: 600;
-}
-body .main-container .message-box li .text {
-  margin-left: 32.5px;
 }
 body .main-container .message-box li .fa-volume-high {
   position: absolute;

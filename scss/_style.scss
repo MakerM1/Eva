@@ -16,10 +16,17 @@ body {
             gap: 10px;
 
             li {
-                padding: 10px 26px 10px 10px;
+                padding: 10px 26px 10px 20px;
                 border-radius: 5px;
                 line-height: 20px;
                 position: relative;
+
+                .gnr-img {
+                    margin-top: 10px;
+                    max-width: 500px;
+                    width: 100%;
+                    border-radius: 10px;
+                }
 
                 code {
                     color: white;
@@ -37,7 +44,8 @@ body {
                     display: flex;
                     align-items: center;
                     gap: 7px;
-                    margin-bottom: 7px;
+                    margin-left: -15px;
+                    margin-bottom: 9px;
 
                     img {
                         max-width: 25px;
@@ -49,10 +57,6 @@ body {
                         font-size: 16px;
                         font-weight: 600;
                     }
-                }
-
-                .text {
-                    margin-left: 32.5px;
                 }
 
                 .fa-volume-high {

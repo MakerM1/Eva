@@ -6,6 +6,7 @@ const eng = document.getElementById('langEngText');
 const geo = document.getElementById('langEngText');
 
 let isGeorgian = false;
+let isDalle = false;
 
 const langSwitch = document.getElementById('langSwitch');
 
@@ -82,6 +83,28 @@ const translateInput = async () => {
       return "";
     }
   };
+
+  generateBtn.addEventListener('click',() => {
+    if (promptInput.value.startsWith('generate') || promptInput.value.startsWith('დამიხატე')) {
+      isDalle = true
+      console.log('true');
+    } else {
+      isDalle = false
+    }
+  });
+  
+  promptInput.addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+    if (promptInput.value.startsWith('generate') || promptInput.value.startsWith('დამიხატე')) {
+      isDalle = true
+      console.log('true');
+    } else {
+      isDalle = false
+    }
+    console.log('tr:' + translatedText);
+    console.log(isDalle);
+  }
+  })
   
 
     let convos = [{
@@ -122,22 +145,42 @@ const generate = async () => {
         generateBtn.innerHTML = `<i class="fa-solid fa-spinner"></i>`
     }
 
+    let response;
+
     try {
-        const response = await fetch(API_URL, {
+         if (isDalle === true) {
+          response = await fetch('https://api.openai.com/v1/images/generations', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${API_KEY}`
             },
             body: JSON.stringify({
-                model: "gpt-3.5-turbo",
-                messages: convos
+              model: 'dall-e-2',
+              prompt: isGeorgian ? translatedText : promptInput.value,
+              n: 1,
+              quality: 'standard',
+              size: '1024x1024',      
             }),
         });
+         } else {
+          response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${API_KEY}`
+            },
+            body: JSON.stringify({
+              model: "gpt-3.5-turbo",
+              messages: convos          
+            }),
+        });
+         }
 
         const data = await response.json()
+        console.log(data);
         const translate = async () => {
-            const text = data.choices[0].message.content;
+            const text = isDalle ? data.data[0].url : data.choices[0].message.content;
             const url = `https://translation.googleapis.com/language/translate/v2?key=${translatorApi}`
 
             const dataTranslate =  {
@@ -155,24 +198,80 @@ const generate = async () => {
                 const translationData = await response.json();
                 let translatedText = translationData.data.translations[0].translatedText;
 
-                resultText.innerHTML += `<li>
-                <div class="user-name-pfp">
-                  <img src="images/eva-logo.png" alt="AI pfp" />
-                  <p class="ai-name">Eva</p>
-                </div>
-                <p class="text">
-                    ${translatedText}
-                </p>
-              </li>`;
-              console.log(translatedText); 
-              chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
+                if (isDalle) {
+                  resultText.innerHTML += `<li>
+                  <div class="user-name-pfp">
+                    <img src="images/eva-logo.png" alt="AI pfp" />
+                    <p class="ai-name">Eva</p>
+                  </div>
+                  <p class="text">
+                  თქვენი ნახატი:
+                  </p>
+                  <img src="${data.data[0].url}" alt="generated image" class="gnr-img" />
+                </li>`; 
+                } else {
+                  resultText.innerHTML += `<li>
+                  <div class="user-name-pfp">
+                    <img src="images/eva-logo.png" alt="AI pfp" />
+                    <p class="ai-name">Eva</p>
+                  </div>
+                  <p class="text">
+                      ${translatedText}
+                  </p>
+                </li>`;
+                console.log(translatedText); 
+                chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
+                }
             } else {
                 console.log(translatedText);
                 console.error('error:', response.statusText)
             }
         }
 
-        if (isGeorgian) {
+        if (isDalle) {
+          if (isGeorgian) {
+            translate()
+        } else {
+            resultText.innerHTML += `<li>
+            <div class="user-name-pfp">
+              <img src="images/eva-logo.png" alt="AI pfp" />
+              <p class="ai-name">Eva</p>
+            </div>
+            <p class="text">
+            Generated:
+            </p>
+            <img src="${data.data[0].url}" alt="generated image" class="gnr-img" />
+          </li>`; 
+
+          function speak(content) {
+            // Create a SpeechSynthesisUtterance
+            const utterance = new SpeechSynthesisUtterance(content);
+          
+            // Select a voice
+            const voices = speechSynthesis.getVoices().filter(function(voice) {
+              return voice.name == "Microsoft Zira - English (United States)"
+            });
+            utterance.voice = voices[0]; // Choose a specific voice
+          
+            // Speak the text
+            speechSynthesis.speak(utterance);
+          }
+          
+          
+
+          let readMessage = document.querySelectorAll('.fa-volume-high')
+          let messageContent = document.querySelectorAll('.text')
+
+          if (readMessage !== undefined && readMessage !== null) {
+            readMessage.forEach((read, i) => {
+              read.addEventListener('click', () => {
+                speak(isDalle ? data.data[0].url : data.choices[0].message.content)
+            })
+            })
+          }
+        }
+        } else {
+          if (isGeorgian) {
             translate()
         } else {
             resultText.innerHTML += `<li>
@@ -208,17 +307,30 @@ const generate = async () => {
           if (readMessage !== undefined && readMessage !== null) {
             readMessage.forEach((read, i) => {
               read.addEventListener('click', () => {
-                speak(data.choices[0].message.content)
+                speak(isDalle ? data.data[0].url : data.choices[0].message.content)
             })
             })
           }
         }
+        }
 
-      let AiReply = {
-        role: 'assistant',
-        name: "eva",
-        content: data.choices[0].message.content
-      };
+      let AiReply;
+
+      if (isDalle) {
+        console.log(isDalle);
+        AiReply = {
+          role: 'assistant',
+          name: "eva",
+          content: data.data[0].url
+        }
+      } else {
+        console.log(isDalle);
+        AiReply = {
+          role: 'assistant',
+          name: "eva",
+          content: data.choices[0].message.content
+        }
+      }
 
         convos.push(AiReply)
         chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
