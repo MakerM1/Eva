@@ -85,7 +85,7 @@ const translateInput = async () => {
   };
 
   generateBtn.addEventListener('click',() => {
-    if (promptInput.value.startsWith('generate') || promptInput.value.startsWith('დამიხატე')) {
+    if (promptInput.value.startsWith('generate') || promptInput.value.startsWith('დამიხატე') || promptInput.value.startsWith('შექმენი')) {
       isDalle = true
       console.log('true');
     } else {
@@ -95,7 +95,7 @@ const translateInput = async () => {
   
   promptInput.addEventListener("keyup", (event) => {
   if (event.key === "Enter") {
-    if (promptInput.value.startsWith('generate') || promptInput.value.startsWith('დამიხატე')) {
+    if (promptInput.value.startsWith('generate') || promptInput.value.startsWith('დამიხატე') || promptInput.value.startsWith('შექმენი')) {
       isDalle = true
       console.log('true');
     } else {
