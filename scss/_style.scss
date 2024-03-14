@@ -466,11 +466,28 @@ body {
 
         .api-inputs {
             display: flex;
+            flex-direction: column;
             gap: 10px;
             justify-content: center;
             flex-wrap: wrap;
 
             &__input {
+                background-color: rgb(26, 26, 26);
+                outline: none;
+                padding: 10px 15px;
+                border-radius: 50px;
+                color: white;
+                max-width: 222px;
+                width: 100%;
+                border: 2px solid rgb(26, 26, 26);
+                transition: all 0.2s;
+
+                &:focus {
+                    border: 2px solid white;
+                }
+            }
+
+            &__name {
                 background-color: rgb(26, 26, 26);
                 outline: none;
                 padding: 10px 15px;

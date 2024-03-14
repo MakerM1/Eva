@@ -27,6 +27,8 @@ const apiInput = document.getElementById('apiInput')
 const popUp = document.querySelector('.pop-up')
 const overlay = document.querySelector('.overlay')
 const chatbox = document.querySelector('.chatbox')
+const name = document.getElementById('name')
+let userNameDisplay = 'User';
 
 let API_KEY;
 
@@ -36,6 +38,13 @@ APIButton.addEventListener('click', () => {
         popUp.style.display = 'none'
         overlay.style.display = 'none'
     }
+
+    if (name.value !== '') {
+      userNameDisplay = name.value
+    } else {
+      userNameDisplay = 'User'
+    }
+    console.log(userNameDisplay);
 })
 
 apiInput.addEventListener('keyup', (event) => {
@@ -46,6 +55,28 @@ apiInput.addEventListener('keyup', (event) => {
             overlay.style.display = 'none'
         }
     }
+
+    if (name.value !== '') {
+      userNameDisplay = name.value
+    } else {
+      userNameDisplay = 'User'
+    }
+})
+
+name.addEventListener('click', () => {
+  if (event.key === "Enter") {
+    if (apiInput.value !== '') {
+        API_KEY = apiInput.value;
+        popUp.style.display = 'none'
+        overlay.style.display = 'none'
+    }
+}
+
+if (name.value !== '') {
+  userNameDisplay = name.value
+} else {
+  userNameDisplay = 'User'
+}
 })
 
 const API_URL = 'https://api.openai.com/v1/chat/completions';
@@ -131,7 +162,7 @@ const translateInput = async () => {
         Write in UK English 
         use no more than 10% passive voice 
         use trasition words in sentences
-        If you are writing a piece of code you MUST surround them in </code> <code> and REMOVE the backtick from it and after every ; you MUST add <br /> tag`
+        If you are writing a piece of code you MUST surround them in </code> <code> and REMOVE the backtick.`
     },
     {
         role: "user",
@@ -370,7 +401,7 @@ const sendMessage = async () => {
         resultText.innerHTML += `<li>
         <div class="user-name-pfp">
           <img src="images/user-pfp.jpg" alt="User pfp" />
-          <p class="user-name">User</p>
+          <p class="user-name">${userNameDisplay}</p>
         </div>
         <p class="text">
         ${promptInput.value}

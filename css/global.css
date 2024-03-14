@@ -563,6 +563,10 @@ body .pop-up .api-inputs {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   gap: 10px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -583,6 +587,21 @@ body .pop-up .api-inputs__input {
   transition: all 0.2s;
 }
 body .pop-up .api-inputs__input:focus {
+  border: 2px solid white;
+}
+body .pop-up .api-inputs__name {
+  background-color: rgb(26, 26, 26);
+  outline: none;
+  padding: 10px 15px;
+  border-radius: 50px;
+  color: white;
+  max-width: 222px;
+  width: 100%;
+  border: 2px solid rgb(26, 26, 26);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+body .pop-up .api-inputs__name:focus {
   border: 2px solid white;
 }
 body .pop-up .api-inputs__confirm {
