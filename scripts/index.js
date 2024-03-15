@@ -27,56 +27,37 @@ const apiInput = document.getElementById('apiInput')
 const popUp = document.querySelector('.pop-up')
 const overlay = document.querySelector('.overlay')
 const chatbox = document.querySelector('.chatbox')
-const name = document.getElementById('name')
+const userNameSelect = document.getElementById('name')
 let userNameDisplay = 'User';
 
 let API_KEY;
 
-APIButton.addEventListener('click', () => {
-    if (apiInput.value !== '') {
-        API_KEY = apiInput.value;
-        popUp.style.display = 'none'
-        overlay.style.display = 'none'
-    }
+function popUpFunc() {
+  if (apiInput.value !== '') {
+    API_KEY = apiInput.value;
+    popUp.style.display = 'none'
+    overlay.style.display = 'none'
+  }
 
-    if (name.value !== '') {
-      userNameDisplay = name.value
-    } else {
-      userNameDisplay = 'User'
-    }
-    console.log(userNameDisplay);
-})
+  if (userNameSelect.value !== '') {
+    userNameDisplay = userNameSelect.value
+  } else {
+    userNameDisplay = 'User'
+  }
+}
+
+APIButton.addEventListener('click', () => popUpFunc())
 
 apiInput.addEventListener('keyup', (event) => {
     if (event.key === "Enter") {
-        if (apiInput.value !== '') {
-            API_KEY = apiInput.value;
-            popUp.style.display = 'none'
-            overlay.style.display = 'none'
-        }
-    }
-
-    if (name.value !== '') {
-      userNameDisplay = name.value
-    } else {
-      userNameDisplay = 'User'
+        popUpFunc()
     }
 })
 
-name.addEventListener('click', () => {
+userNameSelect.addEventListener('keyup', (event) => {
   if (event.key === "Enter") {
-    if (apiInput.value !== '') {
-        API_KEY = apiInput.value;
-        popUp.style.display = 'none'
-        overlay.style.display = 'none'
-    }
-}
-
-if (name.value !== '') {
-  userNameDisplay = name.value
-} else {
-  userNameDisplay = 'User'
-}
+    popUpFunc()
+  }
 })
 
 const API_URL = 'https://api.openai.com/v1/chat/completions';
@@ -191,7 +172,7 @@ const generate = async () => {
               prompt: isGeorgian ? translatedText : promptInput.value,
               n: 1,
               quality: 'standard',
-              size: '1024x1024',      
+              size: '512x512',      
             }),
         });
          } else {
@@ -235,10 +216,16 @@ const generate = async () => {
                     <img src="images/eva-logo.png" alt="AI pfp" />
                     <p class="ai-name">Eva</p>
                   </div>
-                  <p class="text">
-                  თქვენი ნახატი:
-                  </p>
-                  <img src="${data.data[0].url}" alt="generated image" class="gnr-img" />
+                  <p class="text">Generated:</p>
+                  <div class="gnr-img-cont">
+                    <div class="gnr-img-hov">
+                      <img
+                        src="${data.data[0].url}"
+                        alt="generated image"
+                        class="gnr-img"
+                      />
+                    </div>
+                  </div>
                 </li>`; 
                 } else {
                   resultText.innerHTML += `<li>
@@ -268,10 +255,16 @@ const generate = async () => {
               <img src="images/eva-logo.png" alt="AI pfp" />
               <p class="ai-name">Eva</p>
             </div>
-            <p class="text">
-            Generated:
-            </p>
-            <img src="${data.data[0].url}" alt="generated image" class="gnr-img" />
+            <p class="text">Generated:</p>
+            <div class="gnr-img-cont">
+              <div class="gnr-img-hov">
+                <img
+                  src="${data.data[0].url}"
+                  alt="generated image"
+                  class="gnr-img"
+                />
+              </div>
+            </div>
           </li>`; 
 
           function speak(content) {
