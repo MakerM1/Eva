@@ -526,7 +526,7 @@ body .main-container .inputs__stop:active {
 body .pop-up {
   max-width: 500px;
   width: 100%;
-  height: 500px;
+  height: auto;
   background-color: rgb(54, 54, 54);
   border-radius: 20px;
   position: absolute;
@@ -549,8 +549,9 @@ body .pop-up {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 50px;
+  gap: 40px;
   padding: 10px;
+  text-align: center;
 }
 body .pop-up .new-design {
   display: -webkit-box;
@@ -588,18 +589,21 @@ body .pop-up .ui-cont p {
   color: white;
   font-weight: 600;
 }
-body .pop-up .ui-switch {
+body .pop-up .ui-switch,
+body .pop-up .ai-switch {
   display: inline-block;
   width: 40px;
   height: 20px;
   position: relative;
   cursor: pointer;
 }
-body .pop-up .ui-switch__switch {
+body .pop-up .ui-switch__switch,
+body .pop-up .ai-switch__switch {
   opacity: 0;
   visibility: hidden;
 }
-body .pop-up .ui-switch__visual {
+body .pop-up .ui-switch__visual,
+body .pop-up .ai-switch__visual {
   width: 40px;
   height: 20px;
   background-color: #7639cb;
@@ -610,7 +614,8 @@ body .pop-up .ui-switch__visual {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-body .pop-up .ui-switch__visual::before {
+body .pop-up .ui-switch__visual::before,
+body .pop-up .ai-switch__visual::before {
   content: "";
   display: inline-block;
   width: 17px;
@@ -623,11 +628,13 @@ body .pop-up .ui-switch__visual::before {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-body .pop-up .ui-switch__switch:checked + .ui-switch__visual {
+body .pop-up .ui-switch__switch:checked + .ui-switch__visual,
+body .pop-up .ai-switch__switch:checked + .ui-switch__visual {
   background: rgb(81, 9, 183);
   background: radial-gradient(circle, rgb(81, 9, 183) 0%, rgb(73, 42, 116) 100%);
 }
-body .pop-up .ui-switch__switch:checked + .ui-switch__visual::before {
+body .pop-up .ui-switch__switch:checked + .ui-switch__visual::before,
+body .pop-up .ai-switch__switch:checked + .ui-switch__visual::before {
   left: 21px;
 }
 body .pop-up__text {
