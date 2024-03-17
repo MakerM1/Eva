@@ -22,4 +22,10 @@ asSwitch.addEventListener('click', () => {
             ai.setAttribute('src', 'scripts/index.js')
         }
     }
+    
+    if (verAiChoice.checked) {
+        ai.setAttribute('src', 'scripts/geminiTest.js')
+    } else {
+        ai.setAttribute('src', 'scripts/index.js')
+    }
 })
