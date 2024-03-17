@@ -931,6 +931,7 @@ body.newDesign .inputs__listening {
   opacity: 0;
   -webkit-transition: left 0.3s, opacity 0.1s;
   transition: left 0.3s, opacity 0.1s;
+  display: none;
 }
 body.newDesign .inputs__listening.active {
   opacity: 1;

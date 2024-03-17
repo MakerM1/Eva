@@ -808,6 +808,7 @@ body.newDesign {
             box-shadow: none;
             opacity: 0;
             transition: left 0.3s, opacity 0.1s;
+            display: none;
 
             &.active {
                 opacity: 1;
