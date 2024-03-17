@@ -201,38 +201,8 @@ body .main-container .heading-cont__left {
       -ms-flex-align: center;
           align-items: center;
   gap: 5px;
-  max-width: 150px;
+  max-width: 122px;
   width: 100%;
-}
-body .main-container .heading-cont__left a {
-  max-width: 30px;
-  width: 100%;
-}
-body .main-container .heading-cont__left .change-ai {
-  background-color: transparent;
-  border-radius: 50%;
-  cursor: pointer;
-  max-width: 30px;
-  width: 100%;
-  height: 30px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-}
-body .main-container .heading-cont__left .change-ai img {
-  max-width: 20px;
-  width: 100%;
-}
-body .main-container .heading-cont__left .change-ai:hover {
-  background-color: rgba(128, 128, 128, 0.451);
 }
 body .main-container .heading-cont__left img {
   max-width: 40px;
@@ -556,7 +526,7 @@ body .main-container .inputs__stop:active {
 body .pop-up {
   max-width: 500px;
   width: 100%;
-  height: 500px;
+  height: auto;
   background-color: rgb(54, 54, 54);
   border-radius: 20px;
   position: absolute;
