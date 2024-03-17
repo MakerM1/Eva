@@ -212,10 +212,11 @@ const generate = async () => {
 
                 if (isDalle) {
                   resultText.innerHTML += `<li>
-                  <div class="user-name-pfp">
-                    <img src="images/eva-logo.png" alt="AI pfp" />
-                    <p class="ai-name">Eva</p>
-                  </div>
+                <div class="user-name-pfp">
+                  <img src="images/eva-logo.png" alt="AI pfp" />
+                  <p class="ai-name">Eva</p>
+                  <i class="fa-solid fa-volume-high readMessage"></i>
+                </div>
                   <p class="text">Generated:</p>
                   <div class="gnr-img-cont">
                     <div class="gnr-img-hov">
@@ -252,9 +253,10 @@ const generate = async () => {
         } else {
             resultText.innerHTML += `<li>
             <div class="user-name-pfp">
-              <img src="images/eva-logo.png" alt="AI pfp" />
-              <p class="ai-name">Eva</p>
-            </div>
+            <img src="images/eva-logo.png" alt="AI pfp" />
+            <p class="ai-name">Eva</p>
+            <i class="fa-solid fa-volume-high readMessage"></i>
+          </div>
             <p class="text">Generated:</p>
             <div class="gnr-img-cont">
               <div class="gnr-img-hov">
@@ -300,13 +302,13 @@ const generate = async () => {
         } else {
             resultText.innerHTML += `<li>
             <div class="user-name-pfp">
-              <img src="images/eva-logo.png" alt="AI pfp" />
-              <p class="ai-name">Eva</p>
-            </div>
+            <img src="images/eva-logo.png" alt="AI pfp" />
+            <p class="ai-name">Eva</p>
+            <i class="fa-solid fa-volume-high readMessage"></i>
+          </div>
             <p class="text">
             ${data.choices[0].message.content}
             </p>
-            <i class="fa-solid fa-volume-high readMessage"></i>
           </li>`; 
 
           function speak(content) {
@@ -391,15 +393,15 @@ const sendMessage = async () => {
       console.error("Translation failed.");
     }
     if (promptInput.value !== "") {
-        resultText.innerHTML += `<li>
-        <div class="user-name-pfp">
-          <img src="images/user-pfp.jpg" alt="User pfp" />
-          <p class="user-name">${userNameDisplay}</p>
-        </div>
-        <p class="text">
-        ${promptInput.value}
-        </p>
-      </li>`;
+        resultText.innerHTML += `          <li>
+            <div class="user-name-pfp">
+              <p class="user-name">${userNameDisplay}</p>
+              <img src="images/user-pfp.jpg" alt="User pfp" />
+            </div>
+            <p class="text">
+              ${promptInput.value}
+            </p>
+          </li>`;
     if (isGeorgian) {
         let userReply = {
             role: "user",

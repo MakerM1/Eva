@@ -624,25 +624,137 @@ body {
 }
 
 body.newDesign {
-    background: rgb(81, 9, 183);
-    background: radial-gradient(circle, rgba(81, 9, 183, 1) 0%, rgba(73, 42, 116, 1) 100%);
+    background-image: url('../images/blurry-gradient-haikei.svg');
+    background-color: rgba(26, 26, 26, 0.2);
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(5px);
+    background-position: center;
+    background-size: cover;
     font-family: Arial, Helvetica, sans-serif;
     height: 100vh;
 
     .heading-cont {
-        background-color: #1A1A1A;
+        background-color: rgba(26, 26, 26, 0.55);
+        backdrop-filter: blur(20px);
+        border-radius: 40px;
+        max-width: 99%;
+        width: 100%;
+        align-self: center;
+        margin: 5px 0 10px 0;
+    }
+
+    li {
+        padding: 10px 26px 10px 20px;
+        border-radius: 20px;
+        line-height: 20px;
+        position: relative;
+        margin-top: 35px;
+        width: fit-content;
+
+        .gnr-img {
+            max-width: 500px;
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        code {
+            color: white;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-family: monospace;
+            font-size: 16px;
+            background-color: black;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .user-name-pfp {
+            display: flex;
+            gap: 7px;
+            align-items: center;
+            margin-bottom: 9px;
+            position: absolute;
+            top: -35px;
+            max-width: 100px;
+            width: 100%;
+
+            img {
+                max-width: 25px;
+                width: 100%;
+                border-radius: 50%;
+            }
+
+            p {
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .fa-volume-high {
+                position: static;
+                font-size: 13px;
+                cursor: pointer;
+                transition: all 0.2s;
+                padding: 7px 5px;
+                border-radius: 50%;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.253);
+                }
+
+                &:active {
+                    background-color: rgba(0, 0, 0, 0.366);
+                }
+            }
+        }
+
+        &:nth-child(odd) {
+            border-radius: 20px;
+            background: rgb(156, 46, 213);
+            background: linear-gradient(128deg, rgba(156, 46, 213, 1) 0%, rgba(101, 44, 163, 1) 100%);
+            text-align: right;
+            align-self: flex-end;
+
+            .user-name-pfp {
+                justify-content: flex-end;
+                right: 10px;
+            }
+
+        }
+
+        &:nth-of-type(even) {
+            border-radius: 20px;
+            background-color: #242528;
+        }
+
+        animation-name: send;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+
+        @keyframes send {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0px);
+                opacity: 1;
+            }
+        }
     }
 
     .chatbox {
-        max-width: 100%;
+        max-width: 99%;
         width: 100%;
-        height: 81.5%;
-        border-radius: 0 0 35px 35px;
+        height: 78.5%;
+        border-radius: 35px;
         overflow-y: scroll;
-        background-color: rgb(26, 26, 26);
+        background-color: rgba(26, 26, 26, 0.55);
         color: white;
         padding: 15px;
-        border-top: 1px solid white;
+        backdrop-filter: blur(20px);
 
         &__heading {
             display: none;
@@ -670,34 +782,37 @@ body.newDesign {
         left: 50%;
         transform: translate(-50%, 0);
         align-items: center;
-        width: 100%;
+        width: 99%;
         justify-content: space-around;
         gap: 5px;
         padding: 5px;
-        background-color: transparent;
+        border-radius: 40px;
+        background-color: rgba(26, 26, 26, 0.55);
 
         &__listening {
-            max-width: 91.4%;
+            max-width: 200px;
             width: 100%;
             height: 30px;
-            left: 5.5px;
-            top: 10px;
+            left: -50px;
+            top: 7px;
             background-color: transparent;
             position: absolute;
             color: white;
             display: flex;
             align-items: center;
+            justify-content: flex-end;
             gap: 15px;
             padding: 10px;
             z-index: -1;
-            border-radius: 5px 5px 0 0;
+            border-radius: 20px 0 0 20px;
             box-shadow: none;
             opacity: 0;
-            transition: all 0.3s;
+            transition: left 0.3s, opacity 0.1s;
 
             &.active {
                 opacity: 1;
-                top: -25px;
+                top: 7px;
+                left: -195px;
                 box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.75);
             }
 
@@ -707,7 +822,7 @@ body.newDesign {
         }
 
         &__text-input {
-            max-width: 92%;
+            max-width: 100%;
             width: 100%;
             background-color: transparent;
             color: white;
@@ -732,8 +847,9 @@ body.newDesign {
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            right: 65px;
+            right: 5px;
             transition: all 0.2s;
+            border-radius: 50%;
 
             .fa-spinner {
                 animation-name: rotate;
@@ -757,32 +873,33 @@ body.newDesign {
                 width: 100%;
                 height: 50px;
                 border-radius: 5px;
+                border-radius: 50%;
             }
 
             &:disabled {
-                background-color: #461e7e;
+                background-color: #bbbbbb33;
                 color: rgb(159, 159, 159);
                 cursor: not-allowed;
 
                 &:hover {
-                    background-color: #461e7e;
+                    background-color: #bbbbbb33;
                     color: rgb(159, 159, 159);
                 }
 
                 &:active {
-                    background-color: #461e7e;
+                    background-color: #bbbbbb33;
                     color: rgb(159, 159, 159);
                     border: 2px solid transparent;
                 }
             }
 
             &:hover {
-                background-color: $focusColorHover;
+                background-color: #bbbbbb6c;
             }
 
             &:active {
+                background-color: #bbbbbb94;
                 border: 2px solid white;
-                background-color: $focusColorActive;
             }
         }
 
@@ -792,8 +909,9 @@ body.newDesign {
             transition: all 0.2s;
             position: absolute;
             cursor: pointer;
-            right: 125px;
+            right: 55px;
             font-size: 20px;
+            border-radius: 50%;
 
             &:disabled {
                 background-color: #721010;
@@ -813,11 +931,11 @@ body.newDesign {
             }
 
             &:hover {
-                background-color: #320d90;
+                background-color: #bbbbbb6c;
             }
 
             &:active {
-                background-color: #2a0d73;
+                background-color: #bbbbbb94;
                 border: 2px solid white;
             }
         }
