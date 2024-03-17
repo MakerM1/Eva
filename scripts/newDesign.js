@@ -11,3 +11,15 @@ apiConfirm.addEventListener('click', () => {
         document.body.classList.remove('newDesign')
     }
 })
+
+asSwitch.addEventListener('click', () => {
+    if (ai.hasAttribute('src')) {
+        ai.removeAttribute('src')
+
+        if (verAiChoice.checked) {
+            ai.setAttribute('src', 'scripts/geminiTest.js')
+        } else {
+            ai.setAttribute('src', 'scripts/index.js')
+        }
+    }
+})

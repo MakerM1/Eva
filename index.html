@@ -30,6 +30,24 @@
         </div>
       </div>
 
+      <div class="new-design">
+        <p class="pop-up__text">GPT or Gemini?</p>
+        <div class="ui-cont">
+          <div class="old">
+            <p id="gpt" class="active">
+              GPT <br />
+              with DALL-E
+            </p>
+          </div>
+          <label class="ai-switch" for="ver">
+            <input type="checkbox" id="ver" class="ui-switch__switch" />
+            <div class="ui-switch__visual"></div>
+          </label>
+          <div class="new">
+            <p id="gemini">Gemini</p>
+          </div>
+        </div>
+      </div>
       <p class="pop-up__text">
         Please Enter Your Own API Key From OpenAI <br />
         <br />
@@ -59,11 +77,6 @@
         <div class="heading-cont__left">
           <img src="images/eva-logo.png" alt="logo" />
           <h1 class="main-heading">Eva.AI</h1>
-          <a href="gemini.html">
-            <button class="change-ai">
-              <img src="images/Google_Gemini_logo.svg.png" alt="" />
-            </button>
-          </a>
         </div>
 
         <div class="heading-cont__right">
@@ -133,7 +146,7 @@
         }
       }
     </script>
-    <script id="ai" type="module" src="scripts/index.js"></script>
+    <script id="ai" type="module"></script>
     <script src="scripts/newDesign.js"></script>
   </body>
 </html>
