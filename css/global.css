@@ -711,6 +711,9 @@ body .overlay {
   background-color: rgba(0, 0, 0, 0.403);
   z-index: 99;
 }
+body .is-typing {
+  display: none;
+}
 
 ::-moz-selection {
   /* Code for Firefox */
@@ -755,12 +758,6 @@ body.newDesign li {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  -webkit-animation-name: send;
-          animation-name: send;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1;
 }
 body.newDesign li .gnr-img {
   max-width: 500px;
@@ -834,6 +831,14 @@ body.newDesign li:nth-of-type(even) {
   border-radius: 20px;
   background-color: #242528;
 }
+body.newDesign li:last-child {
+  -webkit-animation-name: send;
+          animation-name: send;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+}
 @-webkit-keyframes send {
   0% {
     -webkit-transform: translateY(20px);
@@ -866,7 +871,7 @@ body.newDesign .chatbox {
   overflow-y: scroll;
   background-color: rgba(26, 26, 26, 0.55);
   color: white;
-  padding: 15px;
+  padding: 15px 15px 25px 15px;
   -webkit-backdrop-filter: blur(20px);
           backdrop-filter: blur(20px);
 }
@@ -1006,16 +1011,13 @@ body.newDesign .inputs__send--default {
   border-radius: 50%;
 }
 body.newDesign .inputs__send:disabled {
-  background-color: rgba(187, 187, 187, 0.2);
   color: rgb(159, 159, 159);
   cursor: not-allowed;
 }
 body.newDesign .inputs__send:disabled:hover {
-  background-color: rgba(187, 187, 187, 0.2);
   color: rgb(159, 159, 159);
 }
 body.newDesign .inputs__send:disabled:active {
-  background-color: rgba(187, 187, 187, 0.2);
   color: rgb(159, 159, 159);
   border: 2px solid transparent;
 }
@@ -1057,6 +1059,119 @@ body.newDesign .inputs__stop:hover {
 body.newDesign .inputs__stop:active {
   background-color: rgba(187, 187, 187, 0.5803921569);
   border: 2px solid white;
+}
+body.newDesign .is-typing {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  bottom: 100px;
+  -webkit-transform: translateY(10px);
+      -ms-transform: translateY(10px);
+          transform: translateY(10px);
+  opacity: 0;
+  visibility: hidden;
+  color: white;
+  width: 180px;
+  height: 40px;
+  border-radius: 50px 50px;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  left: 25px;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  gap: 4px;
+  padding: 10px;
+  background: linear-gradient(-45deg, rgb(156, 46, 213), rgb(101, 44, 163), rgb(79, 23, 139), rgb(164, 79, 255));
+  background-size: 400% 400%;
+  -webkit-animation: gradient 15s ease alternate infinite;
+          animation: gradient 15s ease alternate infinite;
+  -webkit-box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.75);
+}
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+body.newDesign .is-typing img {
+  max-width: 20px;
+  width: 100%;
+}
+body.newDesign .is-typing .dots {
+  width: 5px;
+  height: 5px;
+  background-color: white;
+  border-radius: 50%;
+  -webkit-animation-name: typing;
+          animation-name: typing;
+  -webkit-animation-duration: 0.65s;
+          animation-duration: 0.65s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+}
+@-webkit-keyframes typing {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    opacity: 0.3;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes typing {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    opacity: 0.3;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+body.newDesign .is-typing .dot-1 {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+body.newDesign .is-typing .dot-2 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+body.newDesign .is-typing .dot-3 {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+}
+body.newDesign .is-typing.active {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+          transform: translateY(0px);
 }
 
 .pop-up {

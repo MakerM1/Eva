@@ -610,6 +610,10 @@ body {
         background-color: rgba(0, 0, 0, 0.403);
         z-index: 99;
     }
+
+    .is-typing {
+        display: none;
+    }
 }
 
 ::-moz-selection {
@@ -728,19 +732,21 @@ body.newDesign {
             background-color: #242528;
         }
 
-        animation-name: send;
-        animation-duration: 0.5s;
-        animation-iteration-count: 1;
+        &:last-child {
+            animation-name: send;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
 
-        @keyframes send {
-            0% {
-                transform: translateY(20px);
-                opacity: 0;
-            }
+            @keyframes send {
+                0% {
+                    transform: translateY(20px);
+                    opacity: 0;
+                }
 
-            100% {
-                transform: translateY(0px);
-                opacity: 1;
+                100% {
+                    transform: translateY(0px);
+                    opacity: 1;
+                }
             }
         }
     }
@@ -753,7 +759,7 @@ body.newDesign {
         overflow-y: scroll;
         background-color: rgba(26, 26, 26, 0.55);
         color: white;
-        padding: 15px;
+        padding: 15px 15px 25px 15px;
         backdrop-filter: blur(20px);
 
         &__heading {
@@ -878,17 +884,14 @@ body.newDesign {
             }
 
             &:disabled {
-                background-color: #bbbbbb33;
                 color: rgb(159, 159, 159);
                 cursor: not-allowed;
 
                 &:hover {
-                    background-color: #bbbbbb33;
                     color: rgb(159, 159, 159);
                 }
 
                 &:active {
-                    background-color: #bbbbbb33;
                     color: rgb(159, 159, 159);
                     border: 2px solid transparent;
                 }
@@ -939,6 +942,89 @@ body.newDesign {
                 background-color: #bbbbbb94;
                 border: 2px solid white;
             }
+        }
+    }
+
+
+    .is-typing {
+        display: flex;
+        position: fixed;
+        bottom: 100px;
+        transform: translateY(10px);
+        opacity: 0;
+        visibility: hidden;
+        color: white;
+        width: 180px;
+        height: 40px;
+        border-radius: 50px 50px;
+        transition: all 0.4s ease-in-out;
+        left: 25px;
+        align-items: flex-end;
+        gap: 4px;
+        padding: 10px;
+        background: linear-gradient(-45deg, rgba(156, 46, 213, 1), rgba(101, 44, 163, 1), rgb(79, 23, 139), rgb(164, 79, 255));
+        background-size: 400% 400%;
+        animation: gradient 15s ease alternate infinite;
+        box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.75);
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        img {
+            max-width: 20px;
+            width: 100%;
+        }
+
+        .dots {
+            width: 5px;
+            height: 5px;
+            background-color: white;
+            border-radius: 50%;
+            animation-name: typing;
+            animation-duration: 0.65s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+
+            @keyframes typing {
+                0% {
+                    transform: scale(0.5);
+                    opacity: 0.3;
+                }
+
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+        }
+
+        .dot-1 {
+            animation-delay: 0s;
+        }
+
+        .dot-2 {
+            animation-delay: 0.2s;
+        }
+
+        .dot-3 {
+            animation-delay: 0.4s;
+        }
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0px);
         }
     }
 }

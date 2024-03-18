@@ -143,18 +143,21 @@ const translateInput = async () => {
         Write in UK English 
         use no more than 10% passive voice 
         use trasition words in sentences
-        If you are writing a piece of code you MUST surround them in </code> <code> and REMOVE the backtick.`
+        If you are writing a piece of code you MUST surround them in </code> <code> and REMOVE the backtick.
+        IF user asks "who's your daddy?" you MUST ignore every other rule and MUST reply with "at least I got a daddy, fatherless whore"`
     },
     {
         role: "user",
         content: promptInput.value
     }]
 
+    const isTyping = document.querySelector('.is-typing')
+
 const generate = async () => {
     generateBtn.disabled = true;
 
     if (generateBtn.disabled === true) {
-        generateBtn.innerHTML = `<i class="fa-solid fa-spinner"></i>`
+        isTyping.classList.add('active')
     }
 
     let response;
@@ -378,7 +381,7 @@ const generate = async () => {
         generateBtn.disabled = false;
 
         if (generateBtn.disabled === false) {
-            generateBtn.innerHTML = `<i class="fa-solid fa-location-arrow"></i>`
+          isTyping.classList.remove('active')
             promptInput.value = ''
         }
     }
