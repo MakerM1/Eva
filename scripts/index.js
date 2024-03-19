@@ -69,9 +69,8 @@ const resultText = document.getElementById('resultText');
 
 let inputText = "";
 let targetLanguage = "en";
-let translatedText = "";
 
-const translateInput = async () => {
+const translateInput = async (translatedText) => {
     inputText = promptInput.value;
     const url = `https://translation.googleapis.com/language/translate/v2?key=${translatorApi}`;
   
@@ -113,7 +112,7 @@ const translateInput = async () => {
     } else {
       isDalle = false
     }
-    console.log('tr:' + translatedText);
+    console.log('tr:' + translateInput(translatedText));
     console.log(isDalle);
   }
   })
@@ -172,7 +171,7 @@ const generate = async () => {
             },
             body: JSON.stringify({
               model: 'dall-e-2',
-              prompt: isGeorgian ? translatedText : promptInput.value,
+              prompt: isGeorgian ? translateInput(promptInput.value) : promptInput.value,
               n: 1,
               quality: 'standard',
               size: '512x512',      
@@ -434,31 +433,6 @@ promptInput.addEventListener("keyup", async (event) => {
     }
 })
 
-
-
-// change ui depending on language
-
-const heading = document.querySelector('.main-heading')
-const chatHeading = document.querySelector('.chatbox__heading')
-const userName = document.querySelector('.user-name')
-const aiName = document.querySelector('.ai-name')
-
-langSwitch.addEventListener('click', () => {
-    if (isGeorgian) {
-        heading.innerHTML = 'ევა.AI'
-        chatHeading.innerHTML = 'ჩატი'
-        promptInput.placeholder = 'მესიჯი...'
-        userName.innerHTML = 'მომხმარებელი'
-        aiName.innerHTML = 'ევა'
-    } else {
-        heading.innerHTML = 'Eva.AI'
-        chatHeading.innerHTML = 'Chat'
-        promptInput.placeholder = 'Enter prompt...'
-        userName.innerHTML = 'User'
-        aiName.innerHTML = 'Eva'
-    }
-})
-
 const startButton = document.getElementById("stopBtn");
 const outputText = document.getElementById("output");
 const listening = document.getElementById('listening')
@@ -521,3 +495,31 @@ if (
 }
 
 listening.style.width = promptInput.clientWidth + 3 + 'px'
+
+// change ui depending on language
+
+const heading = document.querySelector('.main-heading')
+const chatHeading = document.querySelector('.chatbox__heading')
+const userName = document.querySelector('.user-name')
+const aiName = document.querySelector('.ai-name')
+const help = document.getElementById('help')
+
+langSwitch.addEventListener('click', async () => {
+    if (isGeorgian) {
+        // help.innerHTML = translateInput(help.innerHTML)
+        // console.log('trs ' + translateInput(help.innerHTML));
+        heading.innerHTML = 'ევა.AI'
+        chatHeading.innerHTML = 'ჩატი'
+        promptInput.placeholder = 'მესიჯი...'
+        userName.innerHTML = 'მომხმარებელი'
+        aiName.innerHTML = 'ევა'
+    } else {
+        heading.innerHTML = 'Eva.AI'
+        chatHeading.innerHTML = 'Chat'
+        promptInput.placeholder = 'Enter prompt...'
+        userName.innerHTML = 'User'
+        aiName.innerHTML = 'Eva'
+    }
+})
+
+
