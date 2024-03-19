@@ -332,9 +332,7 @@ body {
             .help {
                 display: flex;
                 flex-direction: column;
-                align-items: center;
                 text-align: center;
-                justify-content: center;
                 margin-top: 50px;
 
                 &__heading {
@@ -360,6 +358,10 @@ body {
                     flex: 1;
                     scroll-snap-type: x mandatory;
                     gap: 10px;
+                    max-width: 900px;
+                    margin: 0 auto;
+                    width: 100%;
+                    justify-content: space-between;
 
                     &::-webkit-scrollbar {
                         display: none;
@@ -381,7 +383,6 @@ body {
                     text-align: center;
                     line-height: 25px;
                     align-items: center;
-                    justify-content: center;
                     cursor: pointer;
                     transition: all 0.2s;
                     position: relative;

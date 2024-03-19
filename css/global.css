@@ -424,13 +424,7 @@ body .main-container .chatbox .help {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   text-align: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   margin-top: 50px;
 }
 body .main-container .chatbox .help__heading {
@@ -460,6 +454,12 @@ body .main-container .chatbox .help__cards {
   -ms-scroll-snap-type: x mandatory;
       scroll-snap-type: x mandatory;
   gap: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 body .main-container .chatbox .help__cards::-webkit-scrollbar {
   display: none;
@@ -484,9 +484,6 @@ body .main-container .chatbox .help__card {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   cursor: pointer;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
