@@ -461,12 +461,13 @@ body {
                 width: 100%;
                 background-color: transparent;
                 color: white;
-                padding: 15px;
+                padding: 15px 100px 15px 15px;
                 border-radius: 50px;
                 outline: none;
                 min-height: 50px;
                 border: 2px solid transparent;
                 transition: all 0.2s;
+                resize: none;
 
                 &:focus {
                     border: 2px solid white;
@@ -528,19 +529,19 @@ body {
                 right: 55px;
                 font-size: 20px;
                 border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
                 &:disabled {
-                    background-color: #721010;
                     color: rgb(159, 159, 159);
                     cursor: not-allowed;
 
                     &:hover {
-                        background-color: #721010;
                         color: rgb(159, 159, 159);
                     }
 
                     &:active {
-                        background-color: #721010;
                         color: rgb(159, 159, 159);
                         border: 2px solid transparent;
                     }
@@ -985,4 +986,90 @@ body {
 ::selection {
     color: white !important;
     background: $focusColor !important;
+}
+
+// || listening Animation
+
+@keyframes quiet {
+    25% {
+        transform: scaleY(.6);
+    }
+
+    50% {
+        transform: scaleY(.4);
+    }
+
+    75% {
+        transform: scaleY(.8);
+    }
+}
+
+@keyframes normal {
+    25% {
+        transform: scaleY(1);
+    }
+
+    50% {
+        transform: scaleY(.4);
+    }
+
+    75% {
+        transform: scaleY(.6);
+    }
+}
+
+@keyframes loud {
+    25% {
+        transform: scaleY(1);
+    }
+
+    50% {
+        transform: scaleY(.4);
+    }
+
+    75% {
+        transform: scaleY(1.2);
+    }
+}
+
+.boxContainer {
+    display: flex;
+    justify-content: space-between;
+    height: 60%;
+    --boxSize: 8px;
+    --gutter: 4px;
+    width: 60%;
+}
+
+.box {
+    transform: scaleY(.4);
+    height: 100%;
+    width: var(--boxSize);
+    background: rgb(76, 35, 129);
+    background: linear-gradient(180deg, rgba(76, 35, 129, 1) 0%, rgba(128, 38, 98, 1) 100%);
+    animation-duration: 1.2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    border-radius: 8px;
+    width: 4px;
+}
+
+.box1 {
+    animation-name: quiet;
+}
+
+.box2 {
+    animation-name: normal;
+}
+
+.box3 {
+    animation-name: quiet;
+}
+
+.box4 {
+    animation-name: loud;
+}
+
+.box5 {
+    animation-name: quiet;
 }

@@ -66,6 +66,7 @@ const promptInput = document.getElementById('promptInput');
 const generateBtn = document.getElementById('generateBtn');
 const stopBtn = document.getElementById('stopBtn');
 const resultText = document.getElementById('resultText');
+const startButton = document.getElementById("stopBtn");
 
 let inputText = "";
 let targetLanguage = "en";
@@ -154,6 +155,7 @@ const translateInput = async (translatedText) => {
 
 const generate = async () => {
     generateBtn.disabled = true;
+    startButton.disabled = true
 
     if (generateBtn.disabled === true) {
         isTyping.classList.add('active')
@@ -378,6 +380,7 @@ const generate = async () => {
         console.error('Error: ', error);
     } finally {
         generateBtn.disabled = false;
+        startButton.disabled = false;
 
         if (generateBtn.disabled === false) {
           isTyping.classList.remove('active')
@@ -433,7 +436,6 @@ promptInput.addEventListener("keyup", async (event) => {
     }
 })
 
-const startButton = document.getElementById("stopBtn");
 const outputText = document.getElementById("output");
 const listening = document.getElementById('listening')
 
@@ -467,21 +469,37 @@ if (
   // Start recognition when the button is clicked
   startButton.addEventListener("mousedown", () => {
     recognition.start();
+    startButton.innerHTML = `<div class="boxContainer">
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+    <div class="box box4"></div>
+    <div class="box box5"></div>
+  </div>`
     listening.classList.add('active')
   });
 
   startButton.addEventListener("touchstart", () => {
     recognition.start();
+    startButton.innerHTML = `<div class="boxContainer">
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+    <div class="box box4"></div>
+    <div class="box box5"></div>
+  </div>`
     listening.classList.add('active')
   });
 
   startButton.addEventListener("mouseup", () => {
     recognition.stop();
+    startButton.innerHTML = `<i class="fa-solid fa-microphone"></i>`
     listening.classList.remove('active')
   });
 
   startButton.addEventListener("touchend", () => {
     recognition.stop();
+    startButton.innerHTML = `<i class="fa-solid fa-microphone"></i>`
     listening.classList.remove('active')
   });
 

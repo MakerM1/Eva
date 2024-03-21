@@ -572,13 +572,14 @@ body .main-container .inputs__text-input {
   width: 100%;
   background-color: transparent;
   color: white;
-  padding: 15px;
+  padding: 15px 100px 15px 15px;
   border-radius: 50px;
   outline: none;
   min-height: 50px;
   border: 2px solid transparent;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  resize: none;
 }
 body .main-container .inputs__text-input:focus {
   border: 2px solid white;
@@ -639,18 +640,24 @@ body .main-container .inputs__stop {
   right: 55px;
   font-size: 20px;
   border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 body .main-container .inputs__stop:disabled {
-  background-color: #721010;
   color: rgb(159, 159, 159);
   cursor: not-allowed;
 }
 body .main-container .inputs__stop:disabled:hover {
-  background-color: #721010;
   color: rgb(159, 159, 159);
 }
 body .main-container .inputs__stop:disabled:active {
-  background-color: #721010;
   color: rgb(159, 159, 159);
   border: 2px solid transparent;
 }
@@ -1104,4 +1111,146 @@ body .is-typing.active {
 ::selection {
   color: white !important;
   background: #7639cb !important;
+}
+
+@-webkit-keyframes quiet {
+  25% {
+    -webkit-transform: scaleY(0.6);
+            transform: scaleY(0.6);
+  }
+  50% {
+    -webkit-transform: scaleY(0.4);
+            transform: scaleY(0.4);
+  }
+  75% {
+    -webkit-transform: scaleY(0.8);
+            transform: scaleY(0.8);
+  }
+}
+
+@keyframes quiet {
+  25% {
+    -webkit-transform: scaleY(0.6);
+            transform: scaleY(0.6);
+  }
+  50% {
+    -webkit-transform: scaleY(0.4);
+            transform: scaleY(0.4);
+  }
+  75% {
+    -webkit-transform: scaleY(0.8);
+            transform: scaleY(0.8);
+  }
+}
+@-webkit-keyframes normal {
+  25% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+  50% {
+    -webkit-transform: scaleY(0.4);
+            transform: scaleY(0.4);
+  }
+  75% {
+    -webkit-transform: scaleY(0.6);
+            transform: scaleY(0.6);
+  }
+}
+@keyframes normal {
+  25% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+  50% {
+    -webkit-transform: scaleY(0.4);
+            transform: scaleY(0.4);
+  }
+  75% {
+    -webkit-transform: scaleY(0.6);
+            transform: scaleY(0.6);
+  }
+}
+@-webkit-keyframes loud {
+  25% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+  50% {
+    -webkit-transform: scaleY(0.4);
+            transform: scaleY(0.4);
+  }
+  75% {
+    -webkit-transform: scaleY(1.2);
+            transform: scaleY(1.2);
+  }
+}
+@keyframes loud {
+  25% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+  50% {
+    -webkit-transform: scaleY(0.4);
+            transform: scaleY(0.4);
+  }
+  75% {
+    -webkit-transform: scaleY(1.2);
+            transform: scaleY(1.2);
+  }
+}
+.boxContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 60%;
+  --boxSize: 8px;
+  --gutter: 4px;
+  width: 60%;
+}
+
+.box {
+  -webkit-transform: scaleY(0.4);
+      -ms-transform: scaleY(0.4);
+          transform: scaleY(0.4);
+  height: 100%;
+  width: var(--boxSize);
+  background: rgb(76, 35, 129);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgb(76, 35, 129)), to(rgb(128, 38, 98)));
+  background: linear-gradient(180deg, rgb(76, 35, 129) 0%, rgb(128, 38, 98) 100%);
+  -webkit-animation-duration: 1.2s;
+          animation-duration: 1.2s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  border-radius: 8px;
+  width: 4px;
+}
+
+.box1 {
+  -webkit-animation-name: quiet;
+          animation-name: quiet;
+}
+
+.box2 {
+  -webkit-animation-name: normal;
+          animation-name: normal;
+}
+
+.box3 {
+  -webkit-animation-name: quiet;
+          animation-name: quiet;
+}
+
+.box4 {
+  -webkit-animation-name: loud;
+          animation-name: loud;
+}
+
+.box5 {
+  -webkit-animation-name: quiet;
+          animation-name: quiet;
 }/*# sourceMappingURL=global.css.map */
