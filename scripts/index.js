@@ -70,8 +70,9 @@ const startButton = document.getElementById("stopBtn");
 
 let inputText = "";
 let targetLanguage = "en";
+let translatedText = ''
 
-const translateInput = async (translatedText) => {
+const translateInput = async () => {
     inputText = promptInput.value;
     const url = `https://translation.googleapis.com/language/translate/v2?key=${translatorApi}`;
   
@@ -113,7 +114,6 @@ const translateInput = async (translatedText) => {
     } else {
       isDalle = false
     }
-    console.log('tr:' + translateInput(translatedText));
     console.log(isDalle);
   }
   })
@@ -173,7 +173,7 @@ const generate = async () => {
             },
             body: JSON.stringify({
               model: 'dall-e-2',
-              prompt: isGeorgian ? translateInput(promptInput.value) : promptInput.value,
+              prompt: isGeorgian ? translatedText : promptInput.value,
               n: 1,
               quality: 'standard',
               size: '512x512',      
