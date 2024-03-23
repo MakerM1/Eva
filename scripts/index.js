@@ -366,18 +366,27 @@ const generate = async () => {
         chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
         console.log(data);
     } catch (error) {
-        resultText.innerHTML = `<p class="error">
+      if (error == 'TypeError: data.choices is undefined') {
+        resultText.innerHTML += `<p class="error">
         <i class="fa-solid fa-circle-exclamation"></i>
-        <span>404:</span> Error occured while generating or incorrect API
-        key.
+        <span>429:</span> Too Many Requests! Please Slow Down A Bit.
       </p>`
+      } else {
+        resultText.innerHTML += `<p class="error">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span>404:</span> Unkown Error.
+      </p>`
+      }
+
       let errorText = {
         role: 'system',
         name: 'eva',
         content: 'if you recieve this it means an error occured during chatting, apologize to the user due to the error.'
     }
+
+    chatbox.scrollTo(0, chatbox.scrollHeight, { behavior: "smooth"})
     convos.push(errorText)
-        console.error('Error: ', error);
+        console.error(`your error dumass is: ${error}`);
     } finally {
         generateBtn.disabled = false;
         startButton.disabled = false;
